@@ -1,0 +1,21 @@
+{
+  "Index": {
+    "title": "Hello world!!!"
+  },
+  "navigation": {
+    "home": "Home",
+    "search": "Search",
+    "trending": "Trending",
+    "github": "Github"
+  },
+  "footer": {
+    "feedback": "Feedback",
+    "disclaimer": "Disclaimer"
+  },
+  "actions": {
+    "watch": "Watch Now",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "copy_link": "Copy link"
+  }
+}

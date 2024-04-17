@@ -1,0 +1,11 @@
+{
+  "Index": {
+    "title": "Hallo Welt!!!"
+  },
+  "navigation": {
+    "home": "Hause",
+    "search": "Suche",
+    "trending": "Im Trend",
+    "github": "Github"
+  }
+}

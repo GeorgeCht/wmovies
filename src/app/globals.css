@@ -2,32 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  body {
+    color: #fff;
+    background-color: #000;
   }
-}
+  /* 
+   * Prevent default scrollbar 
+   */
+  html,
+  body {
+    width: 100%;
+    scrollbar-width: none;
+    -webkit-text-size-adjust: 100%;
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  main::-webkit-scrollbar,
+  .disable-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* 
+   * Selection colors 
+   */
+  ::selection {
+    background-color: #000;
+    color: #fff;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .mask-bottom {
+    mask-image: linear-gradient(to top, transparent 20%, black 100%);
+  }
+  .mask-video {
+    mask-image: linear-gradient(to top, transparent 50%, black 135%);
+  }
+  @media (min-width: 720px) {
+    .mask-video {
+      mask-image: linear-gradient(to top, transparent 20%, black 100%);
+    }
+  }
+  .can-scroll-next {
+    mask-image: linear-gradient(90deg, black 0%, black 90%, transparent 100%);
+  }
+  .can-scroll-prev {
+    mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 100%);
+  }
+  .can-scroll-both {
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
   }
 }
