@@ -16,6 +16,7 @@
     "watch": "Watch Now",
     "mute": "Mute",
     "unmute": "Unmute",
-    "copy_link": "Copy link"
+    "copy_link": "Copy link",
+    "dismiss": "Dismiss"
   }
 }

@@ -9,28 +9,21 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from './carousel'
-import { cn } from '@nextui-org/react'
+import { Skeleton, cn } from '@nextui-org/react'
 import ReviewCard from './review-card'
-import { useQuery } from '@tanstack/react-query'
-import { fetchData } from '@/lib/utils'
 
 const ReviewCarousel = ({
-  movieId,
+  data,
+  loading,
   onModal = false,
   className,
 }: {
-  movieId: string
+  data: Review | undefined
+  loading: boolean
   onModal?: boolean
   className?: string
 }) => {
   const [api, setApi] = useState<CarouselApi>()
-  const { isPending: loading, data } = useQuery({
-    queryKey: [`movie/${movieId}/reviews`],
-    queryFn: async () => fetchData<Review>(`movie/${movieId}/reviews`),
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  })
 
   // To skip spammy reviews
   const forbiddenTokens = ['http', 'https', '//', 'www']
@@ -42,12 +35,38 @@ const ReviewCarousel = ({
   }, [api])
 
   if (loading) {
-    return <p>Loading..</p>
+    return (
+      <React.Fragment>
+        <div className={'flex w-full overflow-hidden'}>
+          {Array.from({ length: 10 }).map((_, index) => (
+            <div
+              className={cn(
+                'min-w-0 shrink-0 grow-0 basis-full',
+                onModal
+                  ? '!basis-[85%] sm:!basis-[66.666%] md:!basis-[33.333%] lg:pr-3 pr-2.5'
+                  : '!basis-[55%] sm:!basis-[300px] lg:pr-6 pr-2.5',
+              )}
+              key={index}
+            >
+              <Skeleton className={'rounded-2xl mb-2'}>
+                <div
+                  style={{
+                    width: onModal ? 333 : 276,
+                    height: onModal ? 148 : 148,
+                  }}
+                  className={'w-[300px] h-[450px]'}
+                />
+              </Skeleton>
+            </div>
+          ))}
+        </div>
+      </React.Fragment>
+    )
   }
 
   return (
     <React.Fragment>
-      {data && (
+      {data && data.total_results > 0 ? (
         <Carousel
           opts={{
             align: 'start',
@@ -60,7 +79,7 @@ const ReviewCarousel = ({
           )}
         >
           <CarouselContent>
-            {data?.results.map((review) => (
+            {data.results.map((review) => (
               <React.Fragment key={review.id}>
                 {!forbiddenTokens.some((token) =>
                   review.content.includes(token),
@@ -69,11 +88,11 @@ const ReviewCarousel = ({
                     key={review.id}
                     className={cn(
                       onModal
-                        ? '!basis-full sm:!basis-[33.333%] lg:pr-3 pr-2.5'
+                        ? '!basis-[85%] sm:!basis-[66.666%] md:!basis-[33.333%] lg:pr-3 pr-2.5'
                         : '!basis-[55%] sm:!basis-[300px] lg:pr-6 pr-2.5',
                     )}
                   >
-                    <ReviewCard review={review} width={onModal ? 333 : 300} />
+                    <ReviewCard review={review} width={onModal ? 733 : 300} />
                   </CarouselItem>
                 ) : null}
               </React.Fragment>
@@ -90,6 +109,23 @@ const ReviewCarousel = ({
             }
           />
         </Carousel>
+      ) : (
+        <div className={'flex flex-col justify-center w-full pt-6'}>
+          <h5
+            className={
+              'text-sm font-normal text-white leading-[1.3em] pt-1 cursor-default'
+            }
+          >
+            No reviews available.
+          </h5>
+          <p
+            className={
+              'text-xs font-semibold text-white/50 leading-none pt-1 cursor-default'
+            }
+          >
+            Please check back later.
+          </p>
+        </div>
       )}
     </React.Fragment>
   )

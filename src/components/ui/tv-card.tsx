@@ -3,9 +3,8 @@
 import React from 'react'
 import { Card, Image, Chip, cn } from '@nextui-org/react'
 import { Link } from '../i18n/navigation'
-import useInterceptorStore from '@/stores/interceptor'
 
-const MovieCard = ({
+const TvCard = ({
   id,
   image,
   title,
@@ -22,16 +21,12 @@ const MovieCard = ({
   width?: string | number
   height?: string | number
 }) => {
-  const { setIsOpen } = useInterceptorStore()
   return (
     <Link
       scroll={false}
-      href={`/movie/${String(id)}`}
+      href={`/tv/${String(id)}`}
       className={cn('group block w-fit', className)}
-      aria-roledescription={'movie-card'}
-      onClick={() => {
-        setIsOpen(true)
-      }}
+      aria-roledescription={'tv-card'}
     >
       <Card radius={'lg'} className={'relative border-none w-fit'}>
         <Image
@@ -63,4 +58,4 @@ const MovieCard = ({
   )
 }
 
-export default MovieCard
+export default TvCard

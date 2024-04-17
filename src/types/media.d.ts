@@ -1,12 +1,13 @@
-declare interface MovieDetails {
+// eslint-disable-next-line no-unused-vars
+declare type MediaType = 'movie' | 'tv'
+
+// eslint-disable-next-line no-unused-vars
+declare interface MediaDetails {
   adult: boolean
   backdrop_path: string
-  belongs_to_collection: BelongsToCollection
-  budget: number
   genres: Array<Genre>
   homepage: string
   id: number
-  imdb_id: string
   origin_country: Array<string>
   original_language: string
   original_title: string
@@ -15,43 +16,11 @@ declare interface MovieDetails {
   poster_path: string
   production_companies: Array<ProductionCompany>
   production_countries: Array<ProductionCountry>
-  release_date: string
-  revenue: number
-  runtime: number
   spoken_languages: Array<SpokenLanguage>
   status: string
   tagline: string
-  title: string
-  video: boolean
   vote_average: number
   vote_count: number
-  images: Images
-  videos: Videos
-}
-
-declare type MediaType = 'movie' | 'tv'
-
-// eslint-disable-next-line no-unused-vars
-declare interface MovieDetailsWithImages extends MovieDetails {
-  images: Images
-}
-
-// eslint-disable-next-line no-unused-vars
-declare interface MovieDetailsWithVideos extends MovieDetails {
-  videos: Videos
-}
-
-// eslint-disable-next-line no-unused-vars
-declare interface MovieDetailsWithImageAndVideos extends MovieDetails {
-  images: Images
-  videos: Videos
-}
-
-declare interface BelongsToCollection {
-  id: number
-  name: string
-  poster_path: string
-  backdrop_path: string
 }
 
 declare interface Genre {
@@ -77,6 +46,7 @@ declare interface SpokenLanguage {
   name: string
 }
 
+// eslint-disable-next-line no-unused-vars
 declare interface Images {
   backdrops: Array<ImageData>
   posters: Array<ImageData>
@@ -93,6 +63,7 @@ declare interface ImageData {
   width: number
 }
 
+// eslint-disable-next-line no-unused-vars
 declare interface Videos {
   results: Array<VideoResult>
 }
@@ -111,27 +82,9 @@ declare interface VideoResult {
 }
 
 // eslint-disable-next-line no-unused-vars
-declare interface MovieRecommended {
+declare interface Recommended<T> {
   page: number
-  results: Array<MovieRecommendedResult>
+  results: Array<T>
   total_pages: number
   total_results: number
-}
-
-declare interface MovieRecommendedResult {
-  backdrop_path?: string
-  id: number
-  original_title: string
-  overview: string
-  poster_path: string
-  media_type: MediaType
-  adult: boolean
-  title: string
-  original_language: string
-  genre_ids: Array<number>
-  popularity: number
-  release_date: string
-  video: boolean
-  vote_average: number
-  vote_count: number
 }

@@ -23,7 +23,7 @@ export default function Page() {
         >
           Trending Now
         </h2>
-        <MovieCarousel />
+        <MovieCarousel onModal={false} />
       </div>
       <div className={'lg:mb-20 mb-10'}>
         <h2

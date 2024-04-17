@@ -13,11 +13,11 @@ import { Skeleton, cn } from '@nextui-org/react'
 import { useQuery } from '@tanstack/react-query'
 import { fetchData } from '@/lib/utils'
 import { useInView } from 'framer-motion'
-import MovieCard from './movie-card'
+import TvCard from './tv-card'
 
-const MovieCarousel = ({
-  mediaType = 'movie',
-  id = '693134',
+const TvCarousel = ({
+  mediaType = 'tv',
+  id = '1622',
   query = '/recommendations',
   onModal = false,
   className,
@@ -35,8 +35,7 @@ const MovieCarousel = ({
   const [api, setApi] = useState<CarouselApi>()
   const { isPending: loading, data } = useQuery({
     queryKey: [`${mediaType}/${id}${query}`],
-    queryFn: async () =>
-      fetchData<MovieRecommended>(`${mediaType}/${id}${query}`),
+    queryFn: async () => fetchData<TvRecommended>(`${mediaType}/${id}${query}`),
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -96,22 +95,22 @@ const MovieCarousel = ({
         )}
       >
         <CarouselContent>
-          {data?.results.map((movie) => (
+          {data?.results.map((tv) => (
             <CarouselItem
-              key={movie.id}
+              key={tv.id}
               className={cn(
                 onModal
                   ? '!basis-[55%] sm:!basis-[33.333%] lg:pr-3 pr-2.5'
                   : '!basis-[55%] sm:!basis-[300px] lg:pr-6 pr-2.5',
               )}
             >
-              <MovieCard
-                id={movie.id}
+              <TvCard
+                id={tv.id}
                 width={onModal ? 333 : 300}
                 height={onModal ? 500 : 450}
-                title={movie.title}
-                image={movie.poster_path}
-                releaseYear={movie.release_date.split('-')[0]}
+                title={tv.name}
+                image={tv.poster_path}
+                releaseYear={tv.first_air_date.split('-')[0]}
               />
             </CarouselItem>
           ))}
@@ -131,4 +130,4 @@ const MovieCarousel = ({
   )
 }
 
-export default MovieCarousel
+export default TvCarousel

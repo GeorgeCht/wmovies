@@ -6,13 +6,16 @@ import { useState } from 'react'
 
 import YouTube from 'react-youtube'
 import NoSsr from '@/components/misc/no-ssr'
+import { cn } from '@nextui-org/react'
 
 const ModalBackground = ({
   mute = 1,
+  idle = false,
   videoId,
   backdrop,
 }: {
   mute?: number
+  idle?: boolean
   videoId?: string
   backdrop: string
 }) => {
@@ -21,12 +24,20 @@ const ModalBackground = ({
   const screenSize = useScreenSize()
 
   return (
-    <div className={'absolute w-full h-[576px] top-0 left-0 z-[-1] opacity-70'}>
+    <div
+      className={cn(
+        'absolute w-full h-[576px] top-0 left-0 z-[-1] transition-opacity !duration-1000',
+        videoEnded && idle ? 'opacity-100' : 'opacity-70',
+      )}
+    >
       <AnimatePresence mode={'wait'}>
         {(videoEnded || !videoLoaded) && (
           <Motion.div
             key={'background'}
-            className={'w-full h-[576px] opacity-60 mask-bottom'}
+            className={cn(
+              'w-full h-[576px] mask-bottom',
+              videoEnded && idle ? 'opacity-100' : 'opacity-60',
+            )}
             style={{
               backgroundSize: 'cover',
               backgroundPosition: 'center',
@@ -53,9 +64,9 @@ const ModalBackground = ({
         {!videoEnded && (
           <Motion.div
             key={'video'}
-            className={
-              'absolute w-full h-[576px] top-0 left-0 z-0 opacity-60 mask-video'
-            }
+            className={cn(
+              'absolute w-full h-[576px] top-0 left-0 z-0 mask-video',
+            )}
             {...animateVariants({
               initial: {
                 opacity: 0,
@@ -81,9 +92,12 @@ const ModalBackground = ({
           >
             <NoSsr>
               <YouTube
-                className={
-                  'absolute w-full h-[576px] mt-[10px] sm:-mt-[60px] scale-125 pointer-events-none'
-                }
+                className={cn(
+                  'absolute w-full h-[576px] transition-all !duration-1000 pointer-events-none',
+                  idle
+                    ? 'scale-[1.35] mt-0 sm:mt-0'
+                    : 'scale-125 mt-[10px] sm:-mt-[60px]',
+                )}
                 videoId={videoId}
                 opts={{
                   width: `${screenSize.width >= 1024 ? 1024 : screenSize.width}px`,

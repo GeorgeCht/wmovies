@@ -40,18 +40,17 @@ const ReviewCard = ({
         <Ratings size={'md'} rating={review.author_details.rating} />
         <p
           className={
-            'text-xs font-semibold text-white/50 leading-none pt-1 cursor-default'
+            'text-xs font-semibold text-white/50 leading-none overflow-hidden truncate w-full line-clamp-1 pt-1 cursor-default'
           }
         >
           {review.author}, {formatDateDifference(review.created_at)}
         </p>
-        <p
+        <div
+          dangerouslySetInnerHTML={{ __html: review.content }}
           className={
             'w-full text-sm font-normal text-balance text-white leading-[1.3em] min-h-[calc(4*1.3em)] truncate line-clamp-4 cursor-default'
           }
-        >
-          {review.content}
-        </p>
+        />
       </div>
       <Modal
         size={'sm'}
@@ -68,7 +67,7 @@ const ReviewCard = ({
         <ModalContent className={'h-[40rem] !relative flex overflow-hidden'}>
           {(onClose) => (
             <React.Fragment>
-              <ModalHeader className={'flex flex-col'}>
+              <ModalHeader className={'flex flex-col w-full'}>
                 <Ratings size={'md'} rating={review.author_details.rating} />
                 <p
                   className={
@@ -89,13 +88,12 @@ const ReviewCard = ({
                     'w-full h-[40rem] overflow-y-scroll disable-scrollbar'
                   }
                 >
-                  <p
+                  <div
                     className={
                       'w-full text-base font-normal text-balance text-white pt-2 pb-[9rem]'
                     }
-                  >
-                    {review.content}
-                  </p>
+                    dangerouslySetInnerHTML={{ __html: review.content }}
+                  />
                 </ModalBody>
               </ScrollArea>
               <Seperator className={'border-white/10'} />

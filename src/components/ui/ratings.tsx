@@ -29,18 +29,25 @@ const Ratings = ({
   className,
   ...props
 }: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
   rating: number
   vote_count?: number
 }) => {
   return (
-    <div className={cn('flex gap-2 items-center', className)} {...props}>
+    <div
+      className={cn(
+        'flex gap-2 items-center transition-all !duration-1000',
+        className,
+      )}
+      {...props}
+    >
       <ul className={'flex gap-0.5'} aria-roledescription={'rating'}>
         {Array.from({ length: 5 }).map((_, index) => (
           <li key={index} aria-roledescription={'star'}>
             <StarIcon
               fill={'white'}
               className={cn(
+                size === 'xs' && 'w-2 h-2',
                 size === 'sm' && 'w-4 h-4',
                 size === 'md' && 'w-5 h-5',
                 size === 'lg' && 'w-6 h-6',

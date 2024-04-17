@@ -1,6 +1,7 @@
 import { Link } from '@/components/i18n/navigation'
 import HeroMovieDetails from '@/components/ui/hero-movie-details'
 import MovieCarousel from '@/components/ui/movie-carousel'
+import TvCarousel from '@/components/ui/tv-carousel'
 import { useTranslations } from 'next-intl'
 
 export default function Index() {
@@ -38,6 +39,7 @@ export default function Index() {
         Trending Now
       </h2>
       <MovieCarousel />
+      <TvCarousel />
     </>
   )
 }

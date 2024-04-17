@@ -6,6 +6,8 @@ import Providers from '@/components/layout/providers'
 import Navigation from '@/components/layout/navigation'
 import SearchBar from '@/components/search/searchbar'
 import ProgressiveBackground from '@/components/layout/progressive-bg'
+import InterceptorModal from '@/components/modal/interceptor'
+
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,7 +24,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default function LocaleLayout({
+export default function Layout({
   children,
   modal,
 }: {
@@ -48,7 +50,7 @@ export default function LocaleLayout({
             >
               <SearchBar />
               {children}
-              {modal}
+              <InterceptorModal>{modal}</InterceptorModal>
             </main>
           </div>
         </Providers>

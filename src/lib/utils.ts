@@ -74,28 +74,15 @@ export const fetchData = async <T extends unknown>(
 
 export const getVideoTrailer = (
   videoResults: Array<VideoResult>,
-): VideoResult | null => {
-  let mostRecentVideo: VideoResult | null = null
-
-  for (const video of videoResults) {
-    if (video.type === 'trailer') {
-      if (
-        !mostRecentVideo ||
-        video.published_at > mostRecentVideo.published_at
-      ) {
-        mostRecentVideo = video
-      }
-    } else {
-      if (
-        !mostRecentVideo ||
-        video.published_at > mostRecentVideo.published_at
-      ) {
-        mostRecentVideo = video
-      }
+): VideoResult => {
+  let result: VideoResult | undefined = undefined
+  videoResults.forEach((video) => {
+    if (video.type === 'Trailer' || video.type === 'trailer') {
+      result = video
     }
-  }
+  })
 
-  return mostRecentVideo
+  return result || videoResults[0]
 }
 
 export const formatDuration = (duration: number): string => {
@@ -138,4 +125,29 @@ export const formatDateDifference = (dateString: string): string => {
   } else {
     return `${Math.floor(secondsDifference)} second${Math.floor(secondsDifference) !== 1 ? 's' : ''} ago`
   }
+}
+
+export const truncate = (input: string, maxLength: number): string =>
+  input.length <= maxLength
+    ? input
+    : input.slice(0, input.lastIndexOf(' ', maxLength) || maxLength) + '...'
+
+export const findLastCanonUrl = (urls: string[]) => {
+  // Reverse the array to start from the last URL
+  const reversedUrls = urls.slice().reverse()
+
+  // Find the index of the last URL that does not include '/movie/' or '/tv/'
+  const lastIndex = reversedUrls.findIndex(
+    (url) => !url.includes('/movie/') && !url.includes('/tv/'),
+  )
+
+  // If lastIndex is -1, it means all URLs contain '/movie/' or '/tv/'
+  if (lastIndex === -1) {
+    return undefined
+  }
+
+  // Get the URL using the index found and reverse it back to original order
+  const lastNonMediaUrl = reversedUrls[lastIndex]
+
+  return lastNonMediaUrl
 }

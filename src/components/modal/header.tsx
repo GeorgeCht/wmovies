@@ -1,3 +1,4 @@
+// @ts-nocheck: TODO: data type should be infered
 'use client'
 
 import React, { useState } from 'react'
@@ -9,24 +10,47 @@ import {
   cn,
   Skeleton,
 } from '@nextui-org/react'
+import { useRouter, usePathname } from '@/components/i18n/navigation'
+import { AnimateHeight } from '@/components/misc/animate-height'
 import { Clock, Link2, Volume2, VolumeX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchData, formatDuration, getVideoTrailer } from '@/lib/utils'
+import {
+  fetchData,
+  formatDuration,
+  getVideoTrailer,
+  truncate,
+} from '@/lib/utils'
 
 import Ratings from '@/components/ui/ratings'
 import PlayIcon from '@/components/ui/play-icon'
 import ModalBackground from '@/components/modal/background'
 
-const Header = ({ movieId }: { movieId: string }) => {
+const Header = ({
+  id,
+  mediaType,
+  idle = false,
+}: {
+  id: string
+  mediaType: MediaType
+  idle: boolean
+}) => {
+  const router = useRouter()
+  const pathname = usePathname()
+
   const [trailerIsMuted, setTrailerIsMuted] = useState(1)
   const [expandOverview, setExpandOverview] = useState(false)
+  const queryFn =
+    mediaType === 'movie'
+      ? fetchData<MovieDetailsWithImageAndVideos>(
+          `${mediaType}/${id}?append_to_response=images,videos`,
+        )
+      : fetchData<TvDetailsWithImageAndVideos>(
+          `${mediaType}/${id}?append_to_response=images,videos`,
+        )
 
   const { isPending: loading, data } = useQuery({
-    queryKey: [`movie/${movieId}/details`],
-    queryFn: async () =>
-      fetchData<MovieDetailsWithImageAndVideos>(
-        `movie/${movieId}?append_to_response=images,videos`,
-      ),
+    queryKey: [`${mediaType}/${id}/details`],
+    queryFn: async () => queryFn,
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -35,7 +59,7 @@ const Header = ({ movieId }: { movieId: string }) => {
   if (loading) {
     return (
       <ModalHeader
-        className={'flex flex-col lg:w-[1024px] w-full gap-1 z-20 px-6'}
+        className={'flex flex-col lg:w-[1024px] w-full gap-1 z-20 px-4 sm:px-6'}
       >
         <div className={'w-[596px]'}>
           <div className={'flex gap-2 sm:pb-60 pb-[30vw]'}>
@@ -82,44 +106,60 @@ const Header = ({ movieId }: { movieId: string }) => {
   return (
     <React.Fragment>
       <ModalBackground
+        idle={idle}
         mute={trailerIsMuted}
         backdrop={data?.backdrop_path!}
         videoId={getVideoTrailer(data?.videos.results!)?.key}
       />
       <ModalHeader
-        className={'flex flex-col lg:w-[1024px] w-full gap-1 z-20 px-6'}
+        className={cn(
+          'flex flex-col lg:w-[1024px] w-full gap-1 z-20 px-4 sm:px-6 transition-opacity !duration-1000',
+          idle ? 'opacity-25' : 'opacity-100',
+        )}
       >
-        <ul
-          className={'flex gap-2 sm:pb-60 pb-[30vw]'}
-          aria-roledescription={'genres'}
+        <div
+          className={cn(
+            'relative flex transition-all !duration-1000',
+            idle ? 'sm:pb-72 pb-[33.333vw]' : 'sm:pb-60 pb-[30vw]',
+          )}
         >
-          {data?.genres.map((genre, index) => (
-            <li key={index}>
-              <Chip
-                size={'sm'}
-                classNames={{
-                  base: 'z-10 backdrop-blur bg-white/15 px-2 py-4',
-                  content: 'font-semibold tracking-tight cursor-default',
-                }}
-              >
-                {genre.name}
-              </Chip>
-            </li>
-          ))}
-          <li>
-            <Chip
-              size={'sm'}
-              classNames={{
-                base: 'z-10 backdrop-blur bg-white/15 px-2 py-4',
-                content:
-                  'flex gap-2 items-center font-semibold tracking-tight cursor-default',
-              }}
-            >
-              <Clock className={'w-3 h-3 text-white'} />
-              {formatDuration(data?.runtime!)}
-            </Chip>
-          </li>
-        </ul>
+          <ul
+            className={cn(
+              'absolute top-0 flex gap-2 transition-all !duration-1000',
+              idle ? '-mt-16' : 'mt-0',
+            )}
+            aria-roledescription={'genres'}
+          >
+            {data?.genres.map((genre, index) => (
+              <li key={index}>
+                <Chip
+                  size={'sm'}
+                  classNames={{
+                    base: 'z-10 backdrop-blur bg-white/15 px-2 py-4',
+                    content: 'font-semibold tracking-tight cursor-default',
+                  }}
+                >
+                  {genre.name}
+                </Chip>
+              </li>
+            ))}
+            {mediaType === 'movie' && (
+              <li>
+                <Chip
+                  size={'sm'}
+                  classNames={{
+                    base: 'z-10 backdrop-blur bg-white/15 px-2 py-4',
+                    content:
+                      'flex gap-2 items-center font-semibold tracking-tight cursor-default',
+                  }}
+                >
+                  <Clock className={'w-3 h-3 text-white'} />
+                  {formatDuration(data?.runtime!) || 'N/A'}
+                </Chip>
+              </li>
+            )}
+          </ul>
+        </div>
         <Ratings
           size={'sm'}
           rating={data?.vote_average!}
@@ -128,31 +168,44 @@ const Header = ({ movieId }: { movieId: string }) => {
         />
         <h1
           aria-roledescription={'title'}
-          className={
-            'text-balance md:text-6xl sm:text-5xl text-[2.5rem] font-semibold leading-none tracking-tighter cursor-default pb-7'
-          }
+          className={cn(
+            'text-balance font-semibold leading-none tracking-tighter cursor-default transition-all !duration-1000',
+            idle
+              ? 'md:text-5xl sm:text-4xl text-[2rem]'
+              : 'md:text-6xl sm:text-5xl text-[2.5rem]',
+          )}
         >
-          {data?.title!}
+          {mediaType === 'movie' ? data?.title! : data?.name!}
         </h1>
-        <div className={'mb-7 max-w-[596px]'}>
-          <p
-            onClick={() => {
-              setExpandOverview((state) => !state)
-            }}
-            aria-roledescription={'overview'}
-            className={cn(
-              expandOverview
-                ? 'max-h-full'
-                : 'h-[calc(3*1.4925em)] truncate line-clamp-3',
-              'h-full sm:text-xl text-base text-balance font-normal leading-normal cursor-default transition-all',
-            )}
-          >
-            {data?.overview!}
-          </p>
+        <div
+          className={cn(
+            'relative mb-4 max-w-[596px] transition-all !duration-1000',
+            idle ? 'pt-0' : 'pt-7',
+          )}
+        >
+          <AnimateHeight>
+            <p
+              onClick={() => {
+                setExpandOverview((state) => !state)
+              }}
+              aria-roledescription={'overview'}
+              className={cn(
+                'sm:text-xl text-base text-balance font-normal leading-normal cursor-default transition-all',
+                idle ? 'h-0' : 'h-fit',
+              )}
+            >
+              {expandOverview
+                ? data?.overview!
+                : truncate(data?.overview!, 160)}
+            </p>
+          </AnimateHeight>
         </div>
-        <div className={'w-full flex gap-3 justify-between pb-5'}>
+        <div className={'w-full flex gap-3 justify-between pb-1'}>
           <div className={'flex gap-3'}>
             <Button
+              onClick={() =>
+                router.push(`${pathname}/watch`, { scroll: false })
+              }
               className={
                 'sm:text-xl text-lg text-black font-medium rounded-full bg-white sm:px-10 px-8 py-8 w-fit'
               }

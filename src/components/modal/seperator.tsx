@@ -5,7 +5,7 @@ const Seperator = ({
   className,
   ...props
 }: DetailedHTMLProps<HTMLAttributes<HTMLHRElement>, HTMLHRElement>) => {
-  return <hr className={cn('border-white/15', className)} {...props} />
+  return <hr className={cn('border-white/10', className)} {...props} />
 }
 
 export default Seperator
