@@ -3,12 +3,14 @@
 import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react'
 import { Spinner, cn } from '@nextui-org/react'
 import { motion as Motion } from 'framer-motion'
-import { animateVariants, fetchData, useScreenSize } from '@/lib/utils'
+import { animateVariants, fetchData } from '@/lib/utils'
 import { ChevronLeft } from 'lucide-react'
 import { useRouter } from '../i18n/navigation'
-import Title from './title'
 import { useQuery } from '@tanstack/react-query'
 import { useIdle } from '@uidotdev/usehooks'
+import { useScreenSize } from '@/lib/hooks'
+
+import Title from './title'
 
 const MediaPlayer = ({
   mediaType,

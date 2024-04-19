@@ -1,6 +1,7 @@
 'use client'
 
-import { useScreenSize, animateVariants } from '@/lib/utils'
+import { animateVariants } from '@/lib/utils'
+import { useScreenSize } from '@/lib/hooks'
 import {
   AnimatePresence,
   motion as Motion,

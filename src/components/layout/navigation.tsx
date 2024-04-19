@@ -29,13 +29,13 @@ import {
   animateVariants,
   getNextEpisodeUrl,
   parseSeasonAndEpisode,
-  useScreenSize,
 } from '@/lib/utils'
 import { useTranslations } from 'next-intl'
 import { Tooltip } from '@nextui-org/react'
 import { AnimatePresence, motion as Motion } from 'framer-motion'
 import { Link, usePathname } from '@/components/i18n/navigation'
 import { useIdle } from '@uidotdev/usehooks'
+import { useScreenSize } from '@/lib/hooks'
 import { Url } from 'next/dist/shared/lib/router/router'
 
 import LangSwitch from '@/components/i18n/lang-switch'

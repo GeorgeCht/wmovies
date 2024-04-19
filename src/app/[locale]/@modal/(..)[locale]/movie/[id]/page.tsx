@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react'
 import { Modal, ModalContent, ModalBody, cn } from '@nextui-org/react'
-import { findLastCanonUrl, useScreenSize } from '@/lib/utils'
+import { findLastCanonUrl } from '@/lib/utils'
+import { useScreenSize } from '@/lib/hooks'
 import { useRouter } from '@/components/i18n/navigation'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useIdle } from '@uidotdev/usehooks'

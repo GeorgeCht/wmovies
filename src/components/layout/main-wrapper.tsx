@@ -1,6 +1,6 @@
 'use client'
 
-import { useScreenSize } from '@/lib/utils'
+import { useScreenSize } from '@/lib/hooks'
 import { cn } from '@nextui-org/react'
 import { useIdle } from '@uidotdev/usehooks'
 import { DetailedHTMLProps, HTMLAttributes } from 'react'
