@@ -1,6 +1,5 @@
 'use client'
 
-// import { useRestoreScroll } from '@/lib/hooks'
 import { fetchData } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
@@ -23,7 +22,6 @@ const PageWrapper = ({
   className?: string
   children?: React.ReactNode
 }) => {
-  // useRestoreScroll()
   const { data } = useQuery({
     queryKey: [`${query}`],
     queryFn: async () => fetchData<Response<MovieResult>>(`${query}`),
