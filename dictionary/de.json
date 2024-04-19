@@ -1,11 +1,24 @@
 {
   "Index": {
-    "title": "Hallo Welt!!!"
+    "title": "Hello world!!!"
   },
   "navigation": {
-    "home": "Hause",
-    "search": "Suche",
-    "trending": "Im Trend",
-    "github": "Github"
+    "movies": "MoviesDe",
+    "tv": "TV SeriesDe",
+    "trending": "TrendingDe",
+    "github": "Github",
+    "episode_list": "Episode ListDe",
+    "next_episode": "NextDe"
+  },
+  "footer": {
+    "feedback": "Feedback",
+    "disclaimer": "Disclaimer"
+  },
+  "actions": {
+    "watch": "Watch Now",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "copy_link": "Copy link",
+    "dismiss": "Dismiss"
   }
 }

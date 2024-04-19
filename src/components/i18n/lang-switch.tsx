@@ -7,6 +7,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Button,
+  Avatar,
 } from '@nextui-org/react'
 import {
   useRouter,
@@ -42,12 +43,26 @@ const LangSwitch = () => {
         <DropdownItem
           key={localeNames.en}
           onClick={() => switchLocale(locales[0])}
+          startContent={
+            <Avatar
+              alt={localeNames.en}
+              className={'w-4 h-4'}
+              src={'https://flagcdn.com/gb.svg'}
+            />
+          }
         >
           {localeNames.en}
         </DropdownItem>
         <DropdownItem
           key={localeNames.de}
           onClick={() => switchLocale(locales[1])}
+          startContent={
+            <Avatar
+              alt={localeNames.de}
+              className={'w-4 h-4'}
+              src={'https://flagcdn.com/de.svg'}
+            />
+          }
         >
           {localeNames.de}
         </DropdownItem>

@@ -31,7 +31,6 @@ const Providers = ({ children }: React.PropsWithChildren) => {
       }}
     >
       <NextUIProvider>{children}</NextUIProvider>
-      React.
       <React.Suspense fallback={null}>
         <NavigationEvents />
       </React.Suspense>

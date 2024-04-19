@@ -1,12 +1,11 @@
 {
-  "Index": {
-    "title": "Hello world!!!"
-  },
   "navigation": {
-    "home": "Home",
-    "search": "Search",
+    "movies": "Movies",
+    "tv": "TV Series",
     "trending": "Trending",
-    "github": "Github"
+    "github": "Github",
+    "episode_list": "Episode List",
+    "next_episode": "Next"
   },
   "footer": {
     "feedback": "Feedback",
@@ -14,9 +13,28 @@
   },
   "actions": {
     "watch": "Watch Now",
+    "more_info": "More Info",
     "mute": "Mute",
     "unmute": "Unmute",
     "copy_link": "Copy link",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "okay": "Okay",
+    "cancel": "Cancel",
+    "never_show_again": "Never show again"
+  },
+  "titles": {
+    "trending": "Trending Now",
+    "weekly_popular": "Popular This Week",
+    "action": "Action Blockbusters",
+    "comedy": "Comedy Movies",
+    "horror": "Hyped Horror Movies",
+    "airing_today": "Airing Today",
+    "top_rated_series": "Top Rated Series"
+  },
+  "popovers": {
+    "next_episode_title": "Next episode",
+    "next_episode_content": "Click here to watch the next episode of the series.",
+    "watchlist_title": "Seasons & episodes watchlist",
+    "watchlist_content": "Click here to navigate through seasons and episodes."
   }
 }

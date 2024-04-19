@@ -17,15 +17,17 @@ import TvCard from './tv-card'
 
 const TvCarousel = ({
   mediaType = 'tv',
-  id = '1622',
+  id,
   query = '/recommendations',
   onModal = false,
+  queryFlag = false,
   className,
 }: {
   mediaType?: MediaType
   id?: string
   query?: string
   onModal?: boolean
+  queryFlag?: boolean
   className?: string
 }) => {
   const ref = useRef<HTMLDivElement>(null)
@@ -34,9 +36,12 @@ const TvCarousel = ({
   })
   const [api, setApi] = useState<CarouselApi>()
   const { isPending: loading, data } = useQuery({
-    queryKey: [`${mediaType}/${id}${query}`],
-    queryFn: async () => fetchData<TvRecommended>(`${mediaType}/${id}${query}`),
-    staleTime: Infinity,
+    queryKey: [queryFlag ? `${query}` : `${mediaType}/${id}${query}`],
+    queryFn: async () =>
+      fetchData<Response<TvResult>>(
+        queryFlag ? `${query}` : `${mediaType}/${id}${query}`,
+      ),
+    staleTime: 1000 * 60 * 60 * 24,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     enabled: isInView,

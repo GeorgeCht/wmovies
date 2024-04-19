@@ -1,7 +1,7 @@
 // @ts-nocheck: TODO: data type should be infered
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   ModalHeader,
   Button,
@@ -9,6 +9,7 @@ import {
   Tooltip,
   cn,
   Skeleton,
+  useDisclosure,
 } from '@nextui-org/react'
 import { useRouter, usePathname } from '@/components/i18n/navigation'
 import { AnimateHeight } from '@/components/misc/animate-height'
@@ -24,18 +25,31 @@ import {
 import Ratings from '@/components/ui/ratings'
 import PlayIcon from '@/components/ui/play-icon'
 import ModalBackground from '@/components/modal/background'
+import EpisodePicker from '@/components/modal/episode-picker'
+import useTvSeriesTrackerStore from '@/stores/tv-series-tracker'
 
 const Header = ({
   id,
   mediaType,
   idle = false,
+  setIsOpen,
 }: {
   id: string
   mediaType: MediaType
   idle: boolean
+  // eslint-disable-next-line no-unused-vars
+  setIsOpen: (value: React.SetStateAction<boolean>) => void
 }) => {
+  const { setId, setData } = useTvSeriesTrackerStore()
   const router = useRouter()
   const pathname = usePathname()
+
+  // for managing episode picker modal disclosure
+  const {
+    isOpen: episodePickerIsOpen,
+    onOpen: episodePickerOnOpen,
+    onOpenChange: episodePickerOnOpenChange,
+  } = useDisclosure()
 
   const [trailerIsMuted, setTrailerIsMuted] = useState(1)
   const [expandOverview, setExpandOverview] = useState(false)
@@ -55,6 +69,13 @@ const Header = ({
     refetchOnWindowFocus: false,
     refetchOnMount: false,
   })
+
+  useEffect(() => {
+    if (data && mediaType === 'tv') {
+      setId(id)
+      setData(data)
+    }
+  }, [data, id, setId, setData, mediaType])
 
   if (loading) {
     return (
@@ -105,12 +126,14 @@ const Header = ({
 
   return (
     <React.Fragment>
-      <ModalBackground
-        idle={idle}
-        mute={trailerIsMuted}
-        backdrop={data?.backdrop_path!}
-        videoId={getVideoTrailer(data?.videos.results!)?.key}
-      />
+      {data && data?.videos && data?.videos.results && (
+        <ModalBackground
+          idle={idle}
+          mute={trailerIsMuted}
+          backdrop={data?.backdrop_path!}
+          videoId={getVideoTrailer(data?.videos.results || [''])?.key || 'none'}
+        />
+      )}
       <ModalHeader
         className={cn(
           'flex flex-col lg:w-[1024px] w-full gap-1 z-20 px-4 sm:px-6 transition-opacity !duration-1000',
@@ -203,18 +226,24 @@ const Header = ({
         <div className={'w-full flex gap-3 justify-between pb-1'}>
           <div className={'flex gap-3'}>
             <Button
-              onClick={() =>
-                router.push(`${pathname}/watch`, { scroll: false })
-              }
+              onClick={() => {
+                if (mediaType === 'movie') {
+                  setIsOpen(false)
+                  router.push(`${pathname}/watch`, { scroll: false })
+                } else {
+                  episodePickerOnOpen()
+                }
+              }}
               className={
                 'sm:text-xl text-lg text-black font-medium rounded-full bg-white sm:px-10 px-8 py-8 w-fit'
               }
             >
-              <PlayIcon className={' sm:w-6 w-5 sm:h-6 h-5'} />
+              <PlayIcon className={'sm:w-6 w-5 sm:h-6 h-5'} />
               Watch Now
             </Button>
             <Tooltip
               showArrow
+              delay={200}
               placement={'right'}
               content={'Copy link'}
               classNames={{
@@ -236,6 +265,7 @@ const Header = ({
           </div>
           <Tooltip
             showArrow
+            delay={200}
             placement={'left'}
             content={'Unmute'}
             classNames={{
@@ -263,6 +293,16 @@ const Header = ({
           </Tooltip>
         </div>
       </ModalHeader>
+      {data && mediaType === 'tv' && (
+        <EpisodePicker
+          id={id}
+          detailsData={data as TvDetailsWithImageAndVideos}
+          isOpen={episodePickerIsOpen}
+          onOpen={episodePickerOnOpen}
+          onOpenChange={episodePickerOnOpenChange}
+          setIsOpen={setIsOpen}
+        />
+      )}
     </React.Fragment>
   )
 }

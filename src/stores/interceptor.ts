@@ -16,6 +16,7 @@ export const initialState: InitialInterceptorState = {
   urls: ['begin'],
   isOpen: false,
 }
+
 const useInterceptorStore = create(
   persist<InterceptorState>(
     (set) => ({

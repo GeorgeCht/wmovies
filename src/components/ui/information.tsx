@@ -217,7 +217,7 @@ const Information = ({
               )}
               {mediaType === 'movie' && (
                 <div aria-roledescription={'production-companies'}>
-                  <Term>Released</Term>
+                  <Term>Release date</Term>
                   <Definition
                     className={'pt-0'}
                     aria-roledescription={'release-date'}

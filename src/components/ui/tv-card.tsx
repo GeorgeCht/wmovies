@@ -33,7 +33,7 @@ const TvCard = ({
           loading={'lazy'}
           alt={title}
           className={'object-cover group-hover:scale-[1.015] !duration-700'}
-          src={`https://image.tmdb.org/t/p/original${image}`}
+          src={`https://image.tmdb.org/t/p/w342${image}`}
           width={width}
           height={height}
         />

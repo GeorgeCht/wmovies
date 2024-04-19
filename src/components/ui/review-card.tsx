@@ -32,7 +32,7 @@ const ReviewCard = ({
         onClick={onOpen}
         aria-roledescription={'review'}
         className={cn(
-          'flex flex-col gap-2 p-3 rounded-large bg-white/[.08] w-full',
+          'flex flex-col gap-2 p-3 rounded-large bg-white/[.08] w-full cursor-pointer',
           className,
         )}
         {...props}
@@ -40,7 +40,7 @@ const ReviewCard = ({
         <Ratings size={'md'} rating={review.author_details.rating} />
         <p
           className={
-            'text-xs font-semibold text-white/50 leading-none overflow-hidden truncate w-full line-clamp-1 pt-1 cursor-default'
+            'text-xs font-semibold text-white/50 leading-none overflow-hidden truncate w-full line-clamp-1 pt-1'
           }
         >
           {review.author}, {formatDateDifference(review.created_at)}
@@ -48,7 +48,7 @@ const ReviewCard = ({
         <div
           dangerouslySetInnerHTML={{ __html: review.content }}
           className={
-            'w-full text-sm font-normal text-balance text-white leading-[1.3em] min-h-[calc(4*1.3em)] truncate line-clamp-4 cursor-default'
+            'w-full text-sm font-normal text-balance text-white leading-[1.3em] min-h-[calc(4*1.3em)] truncate line-clamp-4'
           }
         />
       </div>

@@ -33,9 +33,11 @@ declare interface BelongsToCollection {
 }
 
 // eslint-disable-next-line no-unused-vars
-declare type MovieRecommended = Recommended<MovieRecommendedResult>
+declare type MovieRecommended = Response<MovieResult>
 
-declare interface MovieRecommendedResult {
+// eslint-disable-next-line no-unused-vars
+declare type MovieRecommendedResult = MovieResult
+declare interface MovieResult {
   backdrop_path?: string
   id: number
   original_title: string

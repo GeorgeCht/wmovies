@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
-import useInterceptorStore from '@/stores/interceptor'
 import { usePathname } from '@/components/i18n/navigation'
+import useInterceptorStore from '@/stores/interceptor'
 
 const NavigationEvents = () => {
   const pathname = usePathname()
@@ -10,6 +10,7 @@ const NavigationEvents = () => {
 
   useEffect(() => {
     pushUrl(pathname)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
   return null

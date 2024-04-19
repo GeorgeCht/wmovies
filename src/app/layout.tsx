@@ -1,14 +1,16 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { cn } from '@nextui-org/react'
+import { NextIntlClientProvider, useMessages } from 'next-intl'
 
+import NoSsr from '@/components/misc/no-ssr'
 import Providers from '@/components/layout/providers'
 import Navigation from '@/components/layout/navigation'
 import SearchBar from '@/components/search/searchbar'
 import ProgressiveBackground from '@/components/layout/progressive-bg'
-import InterceptorModal from '@/components/modal/interceptor'
 
 import './globals.css'
+import MainWrapper from '@/components/layout/main-wrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,29 +33,29 @@ export default function Layout({
   children: React.ReactNode
   modal: React.ReactNode
 }) {
+  const messages = useMessages()
+
   return (
     <html>
       <body className={cn(inter.className, 'dark bg-black min-h-screen')}>
-        <Providers>
-          <Navigation />
-          <div className={'w-full h-full'}>
-            <ProgressiveBackground />
-            <div
-              className={
-                'fixed block w-full h-full top-0 left-0 bg-gradient-to-t from-black to-black/40'
-              }
-            />
-            <main
-              className={
-                'relative lg:py-8 py-5 xl:px-24 lg:px-16 px-5 ml-0 lg:ml-24'
-              }
-            >
-              <SearchBar />
-              {children}
-              <InterceptorModal>{modal}</InterceptorModal>
-            </main>
-          </div>
-        </Providers>
+        <NextIntlClientProvider messages={messages}>
+          <Providers>
+            <Navigation />
+            <div className={'w-full h-full'}>
+              <ProgressiveBackground />
+              <div
+                className={
+                  'fixed block w-full h-full top-0 left-0 bg-gradient-to-t from-black to-black/40'
+                }
+              />
+              <MainWrapper>
+                <SearchBar />
+                {children}
+                <NoSsr>{modal}</NoSsr>
+              </MainWrapper>
+            </div>
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

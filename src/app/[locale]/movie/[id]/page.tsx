@@ -1,9 +1,36 @@
-// @see: https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#catch-all-segments
+import PageWrapper from '@/components/layout/page-wrapper'
+import MovieCarousel from '@/components/ui/movie-carousel'
+import Title from '@/components/ui/title'
+import React from 'react'
+
 const Page = ({ params }: { params: { id: string } }) => {
   return (
-    <div>
-      <p className={'text-[300px] text-red-500'}>onPage</p>My movie: {params.id}
-    </div>
+    <React.Fragment>
+      <PageWrapper
+        single
+        query={`movie/${params.id}`}
+        mediaType={'movie'}
+        showMoreInfo={false}
+        className={'w-full lg:w-[1024px] max-w-[1024px]'}
+      >
+        <div className={'lg:mb-20 mb-10'}>
+          <Title>You May Also Like</Title>
+          <MovieCarousel
+            id={params.id}
+            mediaType={'movie'}
+            onModal={false}
+            query={'/recommendations?page=1'}
+          />
+          <MovieCarousel
+            id={params.id}
+            mediaType={'movie'}
+            onModal={false}
+            query={'/recommendations?page=2'}
+            className={'pt-6'}
+          />
+        </div>
+      </PageWrapper>
+    </React.Fragment>
   )
 }
 

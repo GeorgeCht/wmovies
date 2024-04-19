@@ -82,9 +82,12 @@ declare interface VideoResult {
 }
 
 // eslint-disable-next-line no-unused-vars
-declare interface Recommended<T> {
+declare interface Response<T> {
   page: number
   results: Array<T>
   total_pages: number
   total_results: number
 }
+
+// eslint-disable-next-line no-unused-vars
+declare type Recommended<T> = Response<T>

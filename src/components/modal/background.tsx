@@ -2,7 +2,7 @@
 
 import { useScreenSize, animateVariants } from '@/lib/utils'
 import { AnimatePresence, motion as Motion } from 'framer-motion'
-import { useState } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, useState } from 'react'
 
 import YouTube from 'react-youtube'
 import NoSsr from '@/components/misc/no-ssr'
@@ -13,11 +13,15 @@ const ModalBackground = ({
   idle = false,
   videoId,
   backdrop,
-}: {
+  backdropSize = 'w1280',
+  className,
+  ...props
+}: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   mute?: number
   idle?: boolean
   videoId?: string
   backdrop: string
+  backdropSize?: 'w300' | 'w780' | 'w1280' | 'original'
 }) => {
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [videoEnded, setVideoEnded] = useState(false)
@@ -28,7 +32,9 @@ const ModalBackground = ({
       className={cn(
         'absolute w-full h-[576px] top-0 left-0 z-[-1] transition-opacity !duration-1000',
         videoEnded && idle ? 'opacity-100' : 'opacity-70',
+        className,
       )}
+      {...props}
     >
       <AnimatePresence mode={'wait'}>
         {(videoEnded || !videoLoaded) && (
@@ -41,7 +47,7 @@ const ModalBackground = ({
             style={{
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop})`,
+              backgroundImage: `url(https://image.tmdb.org/t/p/${backdropSize}${backdrop})`,
             }}
             {...animateVariants({
               initial: {
@@ -77,6 +83,7 @@ const ModalBackground = ({
               enter: {
                 opacity: 1,
                 transition: {
+                  delay: 1,
                   duration: 3,
                   ease: 'easeIn',
                 },
@@ -91,29 +98,31 @@ const ModalBackground = ({
             animate={videoLoaded ? 'enter' : 'exit'}
           >
             <NoSsr>
-              <YouTube
-                className={cn(
-                  'absolute w-full h-[576px] transition-all !duration-1000 pointer-events-none',
-                  idle
-                    ? 'scale-[1.35] mt-0 sm:mt-0'
-                    : 'scale-125 mt-[10px] sm:-mt-[60px]',
-                )}
-                videoId={videoId}
-                opts={{
-                  width: `${screenSize.width >= 1024 ? 1024 : screenSize.width}px`,
-                  height: `${screenSize.width >= 1024 ? 576 : screenSize.width * 0.5925}px`,
-                  playerVars: {
-                    autoplay: 1,
-                    controls: 0,
-                    rel: 0,
-                    showinfo: 0,
-                    mute: mute,
-                    loop: 1,
-                  },
-                }}
-                onReady={() => setVideoLoaded(true)}
-                onEnd={() => setVideoEnded(true)}
-              />
+              {videoId && (
+                <YouTube
+                  className={cn(
+                    'absolute w-full h-[576px] transition-all !duration-1000 pointer-events-none',
+                    idle
+                      ? 'scale-[1.35] mt-0 sm:mt-0'
+                      : 'scale-125 mt-[10px] sm:-mt-[60px]',
+                  )}
+                  videoId={videoId}
+                  opts={{
+                    width: `${screenSize.width >= 1024 ? 1024 : screenSize.width}px`,
+                    height: `${screenSize.width >= 1024 ? 576 : screenSize.width * 0.5925}px`,
+                    playerVars: {
+                      autoplay: 1,
+                      controls: 0,
+                      rel: 0,
+                      showinfo: 0,
+                      mute: mute,
+                      loop: 1,
+                    },
+                  }}
+                  onReady={() => setVideoLoaded(true)}
+                  onEnd={() => setVideoEnded(true)}
+                />
+              )}
             </NoSsr>
           </Motion.div>
         )}
