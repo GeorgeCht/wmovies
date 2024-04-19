@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## WMovies Project [![Netlify Status](https://api.netlify.com/api/v1/badges/c441f429-64e5-4f85-af49-1a7e6b3886ce/deploy-status)](https://app.netlify.com/sites/w-movies/deploys)
 
-## Getting Started
+### by [@GeorgeCht](https://github.com/GeorgeCht)
 
-First, run the development server:
+A fun little project, utilizing the latest NextJs. Browse and stream thousands of movies and series!
+
+[Check it live here](https://w-movies.netlify.app/)
+
+## Tech stack
+
+- NextJS v14 App router
+- TanStack Query
+- Next-Intl (i18n)
+- TailwindCSS
+- NextUI
+- Shadcn/ui
+- Framer Motion
+- Zustand State Management
+
+## Techniques utilized
+
+- Internationalization
+- Advanced routing
+- Intercepting Modals
+- Data Fetching
+- Custom Caching
+
+## Development
+
+Pretty standard plug 'n play stuff. Get node.js, clone the project and run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Only thing you'll need is a .env at the project root declaring your [themoviedb.org](https://developer.themoviedb.org/reference/intro/getting-started) api key.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```js
+NEXT_PUBLIC_TMDB_API_KEY = xxxx
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Data sources
 
-## Learn More
+- Data API via [themoviedb.org](https://developer.themoviedb.org/reference/intro/getting-started)
+- Video streaming via [vidsrc.to](https://vidsrc.to/#api)
 
-To learn more about Next.js, take a look at the following resources:
+## Feedback & Issues
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Got feedback or wanna report an issue? You know [where to go](https://github.com/GeorgeCht/wmovies/issues).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[MIT License](https://opensource.org/licenses/MIT)
