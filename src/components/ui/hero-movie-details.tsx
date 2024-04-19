@@ -89,14 +89,14 @@ const HeroMovieDetails = ({
           </ul>
           <h1
             className={
-              'md:text-6xl sm:text-5xl text-[2.5rem] font-semibold leading-none tracking-tighter cursor-default pb-7'
+              'md:text-6xl sm:text-5xl text-[2.5rem] font-semibold leading-none tracking-tighter cursor-default md:pb-7 pb-3'
             }
           >
             {mediaType === 'movie' ? data?.title! : data?.name!}
           </h1>
           <p
             className={
-              'sm:text-xl text-base font-normal leading-normal max-w-[596px] cursor-default pb-7'
+              'sm:text-xl text-base font-normal leading-normal max-w-[596px] cursor-default md:pb-7 pb-4'
             }
           >
             {truncate(data?.overview!, 160)}

@@ -203,7 +203,7 @@ const Header = ({
         <div
           className={cn(
             'relative mb-4 max-w-[596px] transition-all !duration-1000',
-            idle ? 'pt-0' : 'pt-7',
+            idle ? 'pt-0' : 'md:pt-7 pt-2.5',
           )}
         >
           <AnimateHeight>

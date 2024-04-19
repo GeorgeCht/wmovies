@@ -204,7 +204,7 @@ const Navigation = ({
                     },
                     enter: {
                       opacity: 1,
-                      transition: { delay: 3 },
+                      transition: { delay: 1 },
                     },
                     exit: {
                       opacity: 0,
@@ -228,11 +228,11 @@ const Navigation = ({
                         motionProps={{
                           ...animateVariants({
                             initial: {
-                              transition: { delay: 0 },
+                              transition: { delay: 1 },
                               opacity: 0,
                             },
                             enter: {
-                              transition: { delay: 1 },
+                              transition: { delay: 2 },
                               opacity: 1,
                             },
                             exit: {
@@ -361,7 +361,7 @@ const Navigation = ({
                               }}
                             >
                               <span className={'inline-block'}>
-                                <button
+                                <span
                                   onClick={() => episodePickerOnOpen()}
                                   className={
                                     'group relative inline-block rounded-md p-2 hover:bg-white/10 transition-all'
@@ -374,7 +374,7 @@ const Navigation = ({
                                       'opacity-60 group-hover:opacity-100 transition-all'
                                     }
                                   />
-                                </button>
+                                </span>
                               </span>
                             </Tooltip>
                           </li>

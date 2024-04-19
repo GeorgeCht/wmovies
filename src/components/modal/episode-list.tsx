@@ -98,7 +98,7 @@ const EpisodeList = ({
                     width={170}
                     height={96}
                     loading={'lazy'}
-                    objectFit={'fill'}
+                    className={'object-fill'}
                     src={`https://image.tmdb.org/t/p/w185${episode.still_path}`}
                     alt={episode.name || 'episode-still-image'}
                   />

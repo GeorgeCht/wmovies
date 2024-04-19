@@ -3,8 +3,10 @@ import TvCarousel from '@/components/ui/tv-carousel'
 import Title from '@/components/ui/title'
 import { useTranslations } from 'next-intl'
 import React from 'react'
+import { unstable_setRequestLocale } from 'next-intl/server'
 
-export default function Page() {
+export default function Page({ params }: { params: { locale: string } }) {
+  unstable_setRequestLocale(params.locale)
   const tTitle = useTranslations('titles')
   return (
     <React.Fragment>

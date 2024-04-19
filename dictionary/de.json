@@ -1,24 +1,40 @@
 {
-  "Index": {
-    "title": "Hello world!!!"
-  },
   "navigation": {
-    "movies": "MoviesDe",
-    "tv": "TV SeriesDe",
-    "trending": "TrendingDe",
+    "movies": "Filme",
+    "tv": "TV-Serien",
+    "trending": "Trend",
     "github": "Github",
-    "episode_list": "Episode ListDe",
-    "next_episode": "NextDe"
+    "episode_list": "Episodenliste",
+    "next_episode": "Nächste"
   },
   "footer": {
     "feedback": "Feedback",
-    "disclaimer": "Disclaimer"
+    "disclaimer": "Haftungsausschluss"
   },
   "actions": {
-    "watch": "Watch Now",
-    "mute": "Mute",
-    "unmute": "Unmute",
-    "copy_link": "Copy link",
-    "dismiss": "Dismiss"
+    "watch": "Jetzt ansehen",
+    "more_info": "Mehr Info",
+    "mute": "Stumm",
+    "unmute": "Ton an",
+    "copy_link": "Link kopieren",
+    "dismiss": "Schließen",
+    "okay": "Okay",
+    "cancel": "Abbrechen",
+    "never_show_again": "Nie wieder anzeigen"
+  },
+  "titles": {
+    "trending": "Aktuelle Trends",
+    "weekly_popular": "Beliebt diese Woche",
+    "action": "Action-Blockbuster",
+    "comedy": "Komödienfilme",
+    "horror": "Horrorschocker",
+    "airing_today": "Heute im Fernsehen",
+    "top_rated_series": "Bestbewertete Serien"
+  },
+  "popovers": {
+    "next_episode_title": "Nächste Episode",
+    "next_episode_content": "Klicken Sie hier, um die nächste Folge der Serie anzusehen.",
+    "watchlist_title": "Watchlist für Staffeln & Episoden",
+    "watchlist_content": "Klicken Sie hier, um durch Staffeln und Episoden zu navigieren."
   }
 }

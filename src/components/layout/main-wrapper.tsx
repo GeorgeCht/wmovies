@@ -16,7 +16,7 @@ const MainWrapper = ({
     <main
       className={cn(
         'relative lg:py-8 py-5 xl:px-24 lg:px-16 px-5 ml-0 lg:ml-24 transition-all !ease-in-out !duration-700',
-        idle && screenSize.width >= 768 ? 'lg:ml-0' : 'lg:ml-24',
+        idle && screenSize.width >= 768 ? 'lg:!ml-0' : 'lg:!ml-24',
         className,
       )}
       {...props}
