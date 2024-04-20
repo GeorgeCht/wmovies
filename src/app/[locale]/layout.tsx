@@ -13,6 +13,7 @@ import ProgressiveBackground from '@/components/layout/progressive-bg'
 
 import '../globals.css'
 import MobileNavigation from '@/components/layout/mobile-navigation'
+import { Suspense } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -57,7 +58,11 @@ export default function LocaleLayout({
               <MainWrapper>
                 <MobileNavigation />
                 <SearchBar />
-                {children}
+                <Suspense
+                  fallback={<h1 className={'text-[300px]'}>Loading</h1>}
+                >
+                  {children}
+                </Suspense>
                 <NoSsr>{modal}</NoSsr>
               </MainWrapper>
             </div>
