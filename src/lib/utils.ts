@@ -165,3 +165,24 @@ export const getNextEpisodeUrl = (url: string): string => {
   parts[parts.length - 1] = episode.toString()
   return parts.join('/')
 }
+
+export const formatLocale = (locale: string) => {
+  switch (locale) {
+    case 'en':
+      return 'en-US'
+    case 'de':
+      return 'de-DE'
+    case 'es':
+      return 'es-ES'
+    case 'el':
+      return 'el-GR'
+    case 'zh':
+      return 'zh-CN'
+    case 'ko':
+      return 'ko-KR'
+    case 'ja':
+      return 'ja-JP'
+    default:
+      throw new Error('Invalid locale provided')
+  }
+}

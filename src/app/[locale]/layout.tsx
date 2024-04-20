@@ -2,16 +2,16 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { cn } from '@nextui-org/react'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
+import { unstable_setRequestLocale } from 'next-intl/server'
 
 import NoSsr from '@/components/misc/no-ssr'
 import Providers from '@/components/layout/providers'
 import Navigation from '@/components/layout/navigation'
 import SearchBar from '@/components/search/searchbar'
+import MainWrapper from '@/components/layout/main-wrapper'
 import ProgressiveBackground from '@/components/layout/progressive-bg'
 
 import '../globals.css'
-import MainWrapper from '@/components/layout/main-wrapper'
-import { unstable_setRequestLocale } from 'next-intl/server'
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -11,8 +11,9 @@ import {
 } from './carousel'
 import { Skeleton, cn } from '@nextui-org/react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchData } from '@/lib/utils'
+import { fetchData, formatLocale } from '@/lib/utils'
 import { useInView } from 'framer-motion'
+import { useLocale } from 'next-intl'
 import TvCard from './tv-card'
 
 const TvCarousel = ({
@@ -35,11 +36,19 @@ const TvCarousel = ({
     margin: '-80px',
   })
   const [api, setApi] = useState<CarouselApi>()
+  const locale = useLocale()
+  const joinString = query.includes('?') ? '&' : '?'
   const { isPending: loading, data } = useQuery({
-    queryKey: [queryFlag ? `${query}` : `${mediaType}/${id}${query}`],
+    queryKey: [
+      queryFlag
+        ? `${query}${joinString}language=${formatLocale(locale)}`
+        : `${mediaType}/${id}${query}${joinString}language=${formatLocale(locale)}`,
+    ],
     queryFn: async () =>
       fetchData<Response<TvResult>>(
-        queryFlag ? `${query}` : `${mediaType}/${id}${query}`,
+        queryFlag
+          ? `${query}${joinString}language=${formatLocale(locale)}`
+          : `${mediaType}/${id}${query}${joinString}language=${formatLocale(locale)}`,
       ),
     staleTime: 1000 * 60 * 60 * 24,
     refetchOnWindowFocus: false,

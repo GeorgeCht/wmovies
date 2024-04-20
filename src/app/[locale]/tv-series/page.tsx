@@ -1,8 +1,10 @@
+import React from 'react'
 import PageWrapper from '@/components/layout/page-wrapper'
 import TvCarousel from '@/components/ui/tv-carousel'
 import Title from '@/components/ui/title'
+import Footer from '@/components/layout/footer'
+
 import { useTranslations } from 'next-intl'
-import React from 'react'
 import { unstable_setRequestLocale } from 'next-intl/server'
 
 export default function Page({ params }: { params: { locale: string } }) {
@@ -63,6 +65,7 @@ export default function Page({ params }: { params: { locale: string } }) {
             onModal={false}
           />
         </div>
+        <Footer />
       </PageWrapper>
     </React.Fragment>
   )

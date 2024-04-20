@@ -1,12 +1,19 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Modal, ModalContent, ModalBody, cn } from '@nextui-org/react'
+import {
+  Modal,
+  ModalContent,
+  ModalBody,
+  cn,
+  ModalFooter,
+} from '@nextui-org/react'
 import { findLastCanonUrl } from '@/lib/utils'
 import { useScreenSize } from '@/lib/hooks'
 import { useRouter } from '@/components/i18n/navigation'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useIdle } from '@uidotdev/usehooks'
+import { useTranslations } from 'next-intl'
 
 import useInterceptorStore from '@/stores/interceptor'
 import MovieCarousel from '@/components/ui/movie-carousel'
@@ -15,13 +22,15 @@ import Header from '@/components/modal/header'
 import Information from '@/components/ui/information'
 import Reviews from '@/components/ui/reviews'
 import Title from '@/components/ui/title'
+import Footer from '@/components/layout/footer'
 
-const Page = ({ params }: { params: { id: string } }) => {
+const Page = ({ params }: { params: { id: string; locale: string } }) => {
   const router = useRouter()
   const idle = useIdle(4500)
   const screenSize = useScreenSize()
   const [isOpen, setIsOpen] = useState(true)
   const { urls } = useInterceptorStore()
+  const tTitle = useTranslations('titles')
 
   return (
     <React.Fragment>
@@ -89,18 +98,18 @@ const Page = ({ params }: { params: { id: string } }) => {
               >
                 <Seperator className={'pb-3'} />
 
-                <Title onModal>Information</Title>
+                <Title onModal>{tTitle('information')}</Title>
                 <Information mediaType={'movie'} id={params.id} />
 
                 <Seperator className={'pb-3 mt-4'} />
 
-                <Title onModal>Reviews</Title>
+                <Title onModal>{tTitle('reviews')}</Title>
                 <Reviews mediaType={'movie'} id={params.id} onModal />
 
                 <Seperator className={'pb-3 mt-4'} />
 
                 <Title onModal className={'sm:pb-3 pb-2'}>
-                  More Like This
+                  {tTitle('more_like_this')}
                 </Title>
                 <MovieCarousel
                   mediaType={'movie'}
@@ -116,6 +125,9 @@ const Page = ({ params }: { params: { id: string } }) => {
                   className={'mt-4'}
                 />
               </ModalBody>
+              <ModalFooter>
+                <Footer className={'!pt-5'} />
+              </ModalFooter>
             </ScrollArea>
           </React.Fragment>
         </ModalContent>

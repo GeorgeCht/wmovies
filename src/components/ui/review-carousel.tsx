@@ -11,6 +11,7 @@ import {
 } from './carousel'
 import { Skeleton, cn } from '@nextui-org/react'
 import ReviewCard from './review-card'
+import { useTranslations } from 'next-intl'
 
 const ReviewCarousel = ({
   data,
@@ -24,6 +25,7 @@ const ReviewCarousel = ({
   className?: string
 }) => {
   const [api, setApi] = useState<CarouselApi>()
+  const tMessage = useTranslations('messages')
 
   // To skip spammy reviews
   const forbiddenTokens = ['http', 'https', '//', 'www']
@@ -116,14 +118,14 @@ const ReviewCarousel = ({
               'text-sm font-normal text-white leading-[1.3em] pt-1 cursor-default'
             }
           >
-            No reviews available.
+            {tMessage('no_reviews')}
           </h5>
           <p
             className={
               'text-xs font-semibold text-white/50 leading-none pt-1 cursor-default'
             }
           >
-            Please check back later.
+            {tMessage('unavailable')}
           </p>
         </div>
       )}

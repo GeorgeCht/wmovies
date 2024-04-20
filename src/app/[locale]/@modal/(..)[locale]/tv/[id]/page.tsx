@@ -21,6 +21,7 @@ import Header from '@/components/modal/header'
 import Information from '@/components/ui/information'
 import Reviews from '@/components/ui/reviews'
 import Title from '@/components/ui/title'
+import Footer from '@/components/layout/footer'
 
 const Page = ({ params }: { params: { id: string } }) => {
   const router = useRouter()
@@ -116,7 +117,9 @@ const Page = ({ params }: { params: { id: string } }) => {
                   className={'mt-4'}
                 />
               </ModalBody>
-              <ModalFooter></ModalFooter>
+              <ModalFooter>
+                <Footer className={'!pt-5'} />
+              </ModalFooter>
             </ScrollArea>
           </React.Fragment>
         </ModalContent>

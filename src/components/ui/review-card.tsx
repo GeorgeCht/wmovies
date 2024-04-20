@@ -13,6 +13,7 @@ import {
 } from '@nextui-org/react'
 import Seperator from '../modal/seperator'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
+import { useTranslations } from 'next-intl'
 
 const ReviewCard = ({
   review,
@@ -24,6 +25,7 @@ const ReviewCard = ({
   width?: string | number
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const tActions = useTranslations('actions')
 
   return (
     <React.Fragment>
@@ -105,7 +107,7 @@ const ReviewCard = ({
                   variant={'ghost'}
                   onPress={onClose}
                 >
-                  Dismiss
+                  {tActions('dismiss')}
                 </Button>
               </ModalFooter>
             </React.Fragment>

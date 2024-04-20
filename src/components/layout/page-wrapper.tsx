@@ -1,9 +1,9 @@
 'use client'
 
-import { fetchData } from '@/lib/utils'
-import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import HeroMovieDetails from '../ui/hero-movie-details'
+import { fetchData } from '@/lib/utils'
+import { useQuery } from '@tanstack/react-query'
 import { Skeleton, cn } from '@nextui-org/react'
 
 const PageWrapper = ({

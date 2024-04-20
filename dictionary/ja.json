@@ -1,0 +1,61 @@
+{
+  "navigation": {
+    "movies": "映画",
+    "tv": "テレビシリーズ",
+    "trending": "トレンド",
+    "github": "Github",
+    "episode_list": "エピソードリスト",
+    "next_episode": "次へ"
+  },
+  "footer": {
+    "feedback": "フィードバック",
+    "disclaimer": "免責事項"
+  },
+  "actions": {
+    "watch": "今すぐ視聴",
+    "more_info": "詳細",
+    "mute": "ミュート",
+    "unmute": "ミュート解除",
+    "copy_link": "リンクをコピー",
+    "dismiss": "閉じる",
+    "okay": "了解",
+    "cancel": "キャンセル",
+    "never_show_again": "再度表示しない",
+    "search": "映画やテレビシリーズを検索"
+  },
+  "messages": {
+    "ratings": "評価",
+    "out_of_10": "10点満点中",
+    "produced_in": "制作地",
+    "produced_by": "制作",
+    "website": "公式ウェブサイト",
+    "release_date": "公開日",
+    "show_more": "もっと見る",
+    "show_less": "もっと少なく表示",
+    "no_reviews": "レビューはありません",
+    "unavailable": "後で再度確認してください",
+    "results_found": "{count, plural, =0 {結果が見つかりませんでした} =1 {1件の結果が見つかりました} other {#件の結果が見つかりました}}",
+    "no_movies_found": "映画が見つかりませんでした",
+    "no_tv_series_found": "テレビシリーズが見つかりませんでした",
+    "movie_results": "'{query}'の映画",
+    "tv_series_results": "'{query}'のテレビシリーズ"
+  },
+  "titles": {
+    "trending": "トレンド中",
+    "weekly_popular": "今週の人気",
+    "action": "アクション映画",
+    "comedy": "コメディ映画",
+    "horror": "ホラー映画",
+    "airing_today": "今日放送中",
+    "top_rated_series": "トップ評価シリーズ",
+    "information": "情報",
+    "reviews": "レビュー",
+    "more_like_this": "同様の作品"
+  },
+  "popovers": {
+    "next_episode_title": "次のエピソード",
+    "next_episode_content": "シリーズの次のエピソードを視聴するにはここをクリックしてください。",
+    "watchlist_title": "ウォッチリスト",
+    "watchlist_content": "シーズンやエピソードを閲覧するにはここをクリックしてください。"
+  }
+}

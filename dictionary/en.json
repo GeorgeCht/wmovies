@@ -20,7 +20,25 @@
     "dismiss": "Dismiss",
     "okay": "Okay",
     "cancel": "Cancel",
-    "never_show_again": "Never show again"
+    "never_show_again": "Never show again",
+    "search": "Search movies and tv series"
+  },
+  "messages": {
+    "ratings": "Ratings",
+    "out_of_10": "out of 10",
+    "produced_in": "Produced in",
+    "produced_by": "Produced by",
+    "website": "Official website",
+    "release_date": "Release date",
+    "show_more": "Show more",
+    "show_less": "Show less",
+    "no_reviews": "No reviews available",
+    "unavailable": "Please check back later",
+    "results_found": "{count, plural, =0 {No results found} =1 {One result found} other {# results found}}",
+    "no_movies_found": "No movies found",
+    "no_tv_series_found": "No TV series found",
+    "movie_results": "Movies for '{query}'",
+    "tv_series_results": "TV Series for '{query}'"
   },
   "titles": {
     "trending": "Trending Now",
@@ -29,12 +47,15 @@
     "comedy": "Comedy Movies",
     "horror": "Hyped Horror Movies",
     "airing_today": "Airing Today",
-    "top_rated_series": "Top Rated Series"
+    "top_rated_series": "Top Rated Series",
+    "information": "Information",
+    "reviews": "Reviews",
+    "more_like_this": "More Like This"
   },
   "popovers": {
     "next_episode_title": "Next episode",
     "next_episode_content": "Click here to watch the next episode of the series.",
-    "watchlist_title": "Seasons & episodes watchlist",
+    "watchlist_title": "Watchlist",
     "watchlist_content": "Click here to navigate through seasons and episodes."
   }
 }

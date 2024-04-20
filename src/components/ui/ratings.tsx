@@ -1,5 +1,6 @@
 import { convertScore, formatVoteCount } from '@/lib/utils'
 import { cn } from '@nextui-org/react'
+import { useTranslations } from 'next-intl'
 import React from 'react'
 import { DetailedHTMLProps, HTMLAttributes, SVGProps } from 'react'
 
@@ -33,6 +34,7 @@ const Ratings = ({
   rating: number
   vote_count?: number
 }) => {
+  const tMessages = useTranslations('messages')
   return (
     <div
       className={cn(
@@ -65,7 +67,9 @@ const Ratings = ({
         >
           <span>{rating.toFixed(1)}</span>
           <span>•</span>
-          <span>{formatVoteCount(vote_count)} Ratings</span>
+          <span>
+            {formatVoteCount(vote_count)} {tMessages('ratings')}
+          </span>
         </div>
       )}
     </div>

@@ -42,7 +42,7 @@ declare interface MovieResult {
   id: number
   original_title: string
   overview: string
-  poster_path: string
+  poster_path: string | null
   media_type: MediaType
   adult: boolean
   title: string

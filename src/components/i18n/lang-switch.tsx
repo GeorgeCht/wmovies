@@ -66,6 +66,71 @@ const LangSwitch = () => {
         >
           {localeNames.de}
         </DropdownItem>
+        <DropdownItem
+          key={localeNames.es}
+          onClick={() => switchLocale(locales[2])}
+          startContent={
+            <Avatar
+              alt={localeNames.es}
+              className={'w-4 h-4'}
+              src={'https://flagcdn.com/es.svg'}
+            />
+          }
+        >
+          {localeNames.es}
+        </DropdownItem>
+        <DropdownItem
+          key={localeNames.el}
+          onClick={() => switchLocale(locales[3])}
+          startContent={
+            <Avatar
+              alt={localeNames.el}
+              className={'w-4 h-4'}
+              src={'https://flagcdn.com/gr.svg'}
+            />
+          }
+        >
+          {localeNames.el}
+        </DropdownItem>
+        <DropdownItem
+          key={localeNames.zh}
+          onClick={() => switchLocale(locales[4])}
+          startContent={
+            <Avatar
+              alt={localeNames.zh}
+              className={'w-4 h-4'}
+              src={'https://flagcdn.com/cn.svg'}
+            />
+          }
+        >
+          {localeNames.zh}
+        </DropdownItem>
+        <DropdownItem
+          key={localeNames.ko}
+          onClick={() => switchLocale(locales[5])}
+          startContent={
+            <Avatar
+              alt={localeNames.ko}
+              className={'w-4 h-4'}
+              src={'https://flagcdn.com/kr.svg'}
+            />
+          }
+        >
+          {localeNames.ko}
+        </DropdownItem>
+        <DropdownItem
+          key={localeNames.ja}
+          onClick={() => switchLocale(locales[6])}
+          startContent={
+            <Avatar
+              alt={localeNames.ja}
+              className={'w-4 h-4'}
+              src={'https://flagcdn.com/jp.svg'}
+            />
+          }
+        >
+          {localeNames.ja}
+        </DropdownItem>
       </DropdownMenu>
     </Dropdown>
   )

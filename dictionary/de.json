@@ -15,26 +15,47 @@
     "watch": "Jetzt ansehen",
     "more_info": "Mehr Info",
     "mute": "Stumm",
-    "unmute": "Ton an",
+    "unmute": "Stummschalten aufheben",
     "copy_link": "Link kopieren",
-    "dismiss": "Schließen",
+    "dismiss": "Abbrechen",
     "okay": "Okay",
     "cancel": "Abbrechen",
-    "never_show_again": "Nie wieder anzeigen"
+    "never_show_again": "Nie wieder anzeigen",
+    "search": "Filme und TV-Serien suchen"
+  },
+  "messages": {
+    "ratings": "Bewertungen",
+    "out_of_10": "von 10",
+    "produced_in": "Produziert in",
+    "produced_by": "Produziert von",
+    "website": "Offizielle Website",
+    "release_date": "Veröffentlichungsdatum",
+    "show_more": "Mehr anzeigen",
+    "show_less": "Weniger anzeigen",
+    "no_reviews": "Keine Bewertungen verfügbar",
+    "unavailable": "Bitte versuchen Sie es später erneut",
+    "results_found": "{count, plural, =0 {Keine Ergebnisse gefunden} =1 {Ein Ergebnis gefunden} other {# Ergebnisse gefunden}}",
+    "no_movies_found": "Keine Filme gefunden",
+    "no_tv_series_found": "Keine TV-Serien gefunden",
+    "movie_results": "Filme für '{query}'",
+    "tv_series_results": "TV-Serien für '{query}'"
   },
   "titles": {
-    "trending": "Aktuelle Trends",
+    "trending": "Trending jetzt",
     "weekly_popular": "Beliebt diese Woche",
     "action": "Action-Blockbuster",
     "comedy": "Komödienfilme",
-    "horror": "Horrorschocker",
+    "horror": "Hochgehypte Horrorfilme",
     "airing_today": "Heute im Fernsehen",
-    "top_rated_series": "Bestbewertete Serien"
+    "top_rated_series": "Top-bewertete Serien",
+    "information": "Information",
+    "reviews": "Bewertungen",
+    "more_like_this": "Ähnliche Inhalte"
   },
   "popovers": {
-    "next_episode_title": "Nächste Episode",
+    "next_episode_title": "Nächste Folge",
     "next_episode_content": "Klicken Sie hier, um die nächste Folge der Serie anzusehen.",
-    "watchlist_title": "Watchlist für Staffeln & Episoden",
+    "watchlist_title": "Watchlist",
     "watchlist_content": "Klicken Sie hier, um durch Staffeln und Episoden zu navigieren."
   }
 }

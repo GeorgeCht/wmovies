@@ -11,12 +11,14 @@ import {
   Skeleton,
   useDisclosure,
 } from '@nextui-org/react'
+import { useLocale, useTranslations } from 'next-intl'
 import { useRouter, usePathname } from '@/components/i18n/navigation'
 import { AnimateHeight } from '@/components/misc/animate-height'
 import { Clock, Link2, Volume2, VolumeX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import {
   fetchData,
+  formatLocale,
   formatDuration,
   getVideoTrailer,
   truncate,
@@ -41,6 +43,8 @@ const Header = ({
   setIsOpen: (value: React.SetStateAction<boolean>) => void
 }) => {
   const { setId, setData } = useTvSeriesTrackerStore()
+  const locale = useLocale()
+  const tActions = useTranslations('actions')
   const router = useRouter()
   const pathname = usePathname()
 
@@ -56,14 +60,14 @@ const Header = ({
   const queryFn =
     mediaType === 'movie'
       ? fetchData<MovieDetailsWithImageAndVideos>(
-          `${mediaType}/${id}?append_to_response=images,videos`,
+          `${mediaType}/${id}?append_to_response=images,videos&language=${formatLocale(locale)}`,
         )
       : fetchData<TvDetailsWithImageAndVideos>(
-          `${mediaType}/${id}?append_to_response=images,videos`,
+          `${mediaType}/${id}?append_to_response=images,videos&language=${formatLocale(locale)}`,
         )
 
   const { isPending: loading, data } = useQuery({
-    queryKey: [`${mediaType}/${id}/details`],
+    queryKey: [`${mediaType}/${id}/details?language=${formatLocale(locale)}`],
     queryFn: async () => queryFn,
     staleTime: Infinity,
     refetchOnWindowFocus: false,
@@ -239,13 +243,13 @@ const Header = ({
               }
             >
               <PlayIcon className={'sm:w-6 w-5 sm:h-6 h-5'} />
-              Watch Now
+              {tActions('watch')}
             </Button>
             <Tooltip
               showArrow
               delay={200}
               placement={'right'}
-              content={'Copy link'}
+              content={tActions('copy_link')}
               classNames={{
                 base: ['before:bg-neutral-100 dark:before:bg-white'],
                 content: [
@@ -267,7 +271,9 @@ const Header = ({
             showArrow
             delay={200}
             placement={'left'}
-            content={'Unmute'}
+            content={
+              trailerIsMuted === 1 ? tActions('unmute') : tActions('mute')
+            }
             classNames={{
               base: ['before:bg-neutral-100 dark:before:bg-white'],
               content: [

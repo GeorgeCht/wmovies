@@ -1,0 +1,61 @@
+{
+  "navigation": {
+    "movies": "Películas",
+    "tv": "Series de TV",
+    "trending": "Tendencia",
+    "github": "Github",
+    "episode_list": "Lista de episodios",
+    "next_episode": "Siguiente"
+  },
+  "footer": {
+    "feedback": "Comentarios",
+    "disclaimer": "Aviso legal"
+  },
+  "actions": {
+    "watch": "Ver ahora",
+    "more_info": "Más información",
+    "mute": "Silenciar",
+    "unmute": "Activar sonido",
+    "copy_link": "Copiar enlace",
+    "dismiss": "Descartar",
+    "okay": "Aceptar",
+    "cancel": "Cancelar",
+    "never_show_again": "No mostrar de nuevo",
+    "search": "Buscar películas y series de TV"
+  },
+  "messages": {
+    "ratings": "Calificaciones",
+    "out_of_10": "de 10",
+    "produced_in": "Producido en",
+    "produced_by": "Producido por",
+    "website": "Sitio web oficial",
+    "release_date": "Fecha de lanzamiento",
+    "show_more": "Mostrar más",
+    "show_less": "Mostrar menos",
+    "no_reviews": "No hay reseñas disponibles",
+    "unavailable": "Por favor, vuelva más tarde",
+    "results_found": "{count, plural, =0 {No se encontraron resultados} =1 {Un resultado encontrado} other {# resultados encontrados}}",
+    "no_movies_found": "No se encontraron películas",
+    "no_tv_series_found": "No se encontraron series de TV",
+    "movie_results": "Películas para '{query}'",
+    "tv_series_results": "Series de TV para '{query}'"
+  },
+  "titles": {
+    "trending": "Tendencias ahora",
+    "weekly_popular": "Popular esta semana",
+    "action": "Éxitos de acción",
+    "comedy": "Comedias",
+    "horror": "Películas de terror populares",
+    "airing_today": "Emisión hoy",
+    "top_rated_series": "Series mejor valoradas",
+    "information": "Información",
+    "reviews": "Reseñas",
+    "more_like_this": "Más como esta"
+  },
+  "popovers": {
+    "next_episode_title": "Próximo episodio",
+    "next_episode_content": "Haz clic aquí para ver el próximo episodio de la serie.",
+    "watchlist_title": "Lista de seguimiento",
+    "watchlist_content": "Haz clic aquí para navegar entre temporadas y episodios."
+  }
+}

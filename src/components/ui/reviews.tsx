@@ -1,5 +1,6 @@
 import { fetchData, formatVoteCount } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
+import { useTranslations } from 'next-intl'
 
 import React from 'react'
 import ReviewCarousel from './review-carousel'
@@ -32,6 +33,9 @@ const Reviews = ({
     refetchOnMount: false,
   })
 
+  const tMessage = useTranslations('messages')
+  const tTitle = useTranslations('titles')
+
   return (
     <React.Fragment>
       {detailsData && (
@@ -49,7 +53,7 @@ const Reviews = ({
                 'text-sm font-medium text-white/50 leading-none cursor-default'
               }
             >
-              out of 10
+              {tMessage('out_of_10')}
             </span>
           </div>
           <span
@@ -57,8 +61,9 @@ const Reviews = ({
               'flex justify-end w-1/3 text-xs font-semibold text-white/50 leading-none pt-1 cursor-default'
             }
           >
-            {formatVoteCount(detailsData?.vote_count!) || 'N/A'} Ratings •{' '}
-            {reviewsData?.total_results} Reviews
+            {formatVoteCount(detailsData?.vote_count!) || 'N/A'}{' '}
+            {tMessage('ratings')} • {reviewsData?.total_results}{' '}
+            {tTitle('reviews')}
           </span>
         </div>
       )}

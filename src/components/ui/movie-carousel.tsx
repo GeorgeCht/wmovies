@@ -11,8 +11,9 @@ import {
 } from './carousel'
 import { Skeleton, cn } from '@nextui-org/react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchData } from '@/lib/utils'
+import { fetchData, formatLocale } from '@/lib/utils'
 import { useInView } from 'framer-motion'
+import { useLocale } from 'next-intl'
 import MovieCard from './movie-card'
 
 const MovieCarousel = ({
@@ -35,11 +36,19 @@ const MovieCarousel = ({
     margin: '-80px',
   })
   const [api, setApi] = useState<CarouselApi>()
+  const locale = useLocale()
+  const joinString = query.includes('?') ? '&' : '?'
   const { isPending: loading, data } = useQuery({
-    queryKey: [queryFlag ? `${query}` : `${mediaType}/${id}${query}`],
+    queryKey: [
+      queryFlag
+        ? `${query}${joinString}language=${formatLocale(locale)}`
+        : `${mediaType}/${id}${query}${joinString}language=${formatLocale(locale)}`,
+    ],
     queryFn: async () =>
       fetchData<Response<MovieResult>>(
-        queryFlag ? `${query}` : `${mediaType}/${id}${query}`,
+        queryFlag
+          ? `${query}${joinString}language=${formatLocale(locale)}`
+          : `${mediaType}/${id}${query}${joinString}language=${formatLocale(locale)}`,
       ),
     staleTime: 1000 * 60 * 60 * 24,
     refetchOnWindowFocus: false,
@@ -101,23 +110,27 @@ const MovieCarousel = ({
       >
         <CarouselContent>
           {data?.results.map((movie) => (
-            <CarouselItem
-              key={movie.id}
-              className={cn(
-                onModal
-                  ? '!basis-[55%] sm:!basis-[33.333%] lg:pr-3 pr-2.5'
-                  : '!basis-[55%] sm:!basis-[300px] lg:pr-6 pr-2.5',
+            <React.Fragment key={movie.id}>
+              {movie.poster_path !== null && (
+                <CarouselItem
+                  key={movie.id}
+                  className={cn(
+                    onModal
+                      ? '!basis-[55%] sm:!basis-[33.333%] lg:pr-3 pr-2.5'
+                      : '!basis-[55%] sm:!basis-[300px] lg:pr-6 pr-2.5',
+                  )}
+                >
+                  <MovieCard
+                    id={movie.id}
+                    width={onModal ? 333 : 300}
+                    height={onModal ? 500 : 450}
+                    title={movie.title}
+                    image={movie.poster_path}
+                    releaseYear={movie.release_date.split('-')[0]}
+                  />
+                </CarouselItem>
               )}
-            >
-              <MovieCard
-                id={movie.id}
-                width={onModal ? 333 : 300}
-                height={onModal ? 500 : 450}
-                title={movie.title}
-                image={movie.poster_path}
-                releaseYear={movie.release_date.split('-')[0]}
-              />
-            </CarouselItem>
+            </React.Fragment>
           ))}
         </CarouselContent>
         <CarouselNext

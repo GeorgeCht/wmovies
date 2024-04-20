@@ -1,3 +1,4 @@
+import Footer from '@/components/layout/footer'
 import PageWrapper from '@/components/layout/page-wrapper'
 import MovieCarousel from '@/components/ui/movie-carousel'
 import Title from '@/components/ui/title'
@@ -29,6 +30,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             className={'pt-6'}
           />
         </div>
+        <Footer />
       </PageWrapper>
     </React.Fragment>
   )

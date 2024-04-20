@@ -1,0 +1,61 @@
+{
+  "navigation": {
+    "movies": "영화",
+    "tv": "TV 시리즈",
+    "trending": "트렌드",
+    "github": "깃허브",
+    "episode_list": "에피소드 목록",
+    "next_episode": "다음"
+  },
+  "footer": {
+    "feedback": "피드백",
+    "disclaimer": "면책 조항"
+  },
+  "actions": {
+    "watch": "지금 시청",
+    "more_info": "더보기",
+    "mute": "음소거",
+    "unmute": "음소거 해제",
+    "copy_link": "링크 복사",
+    "dismiss": "닫기",
+    "okay": "확인",
+    "cancel": "취소",
+    "never_show_again": "다시 표시하지 않음",
+    "search": "영화 및 TV 시리즈 검색"
+  },
+  "messages": {
+    "ratings": "평점",
+    "out_of_10": "10점 만점 중",
+    "produced_in": "제작 지역",
+    "produced_by": "제작자",
+    "website": "공식 웹사이트",
+    "release_date": "출시일",
+    "show_more": "더 보기",
+    "show_less": "간략히 보기",
+    "no_reviews": "리뷰가 없습니다",
+    "unavailable": "나중에 다시 확인해주세요",
+    "results_found": "{count, plural, =0 {결과를 찾을 수 없습니다} =1 {1개의 결과가 있습니다} other {#개의 결과가 있습니다}}",
+    "no_movies_found": "영화를 찾을 수 없습니다",
+    "no_tv_series_found": "TV 시리즈를 찾을 수 없습니다",
+    "movie_results": "'{query}'에 대한 영화",
+    "tv_series_results": "'{query}'에 대한 TV 시리즈"
+  },
+  "titles": {
+    "trending": "현재 트렌드",
+    "weekly_popular": "이번 주 인기",
+    "action": "액션 영화",
+    "comedy": "코미디 영화",
+    "horror": "공포 영화",
+    "airing_today": "오늘 방영",
+    "top_rated_series": "최고 평점 시리즈",
+    "information": "정보",
+    "reviews": "리뷰",
+    "more_like_this": "비슷한 작품"
+  },
+  "popovers": {
+    "next_episode_title": "다음 에피소드",
+    "next_episode_content": "시리즈의 다음 에피소드를 보려면 여기를 클릭하세요.",
+    "watchlist_title": "시청 목록",
+    "watchlist_content": "시즌 및 에피소드를 탐색하려면 여기를 클릭하세요."
+  }
+}

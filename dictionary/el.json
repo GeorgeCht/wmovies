@@ -1,0 +1,61 @@
+{
+  "navigation": {
+    "movies": "Ταινίες",
+    "tv": "Σειρές",
+    "trending": "Δημοφιλή",
+    "github": "Github",
+    "episode_list": "Επεισόδια",
+    "next_episode": "Επόμενο"
+  },
+  "footer": {
+    "feedback": "Feedback",
+    "disclaimer": "Αποποίηση Ευθυνών"
+  },
+  "actions": {
+    "watch": "Παρακολούθηση",
+    "more_info": "Περισσότερα",
+    "mute": "Σίγαση",
+    "unmute": "Κατάργηση Σίγασης",
+    "copy_link": "Αντιγραφή συνδέσμου",
+    "dismiss": "Κλείσιμο",
+    "okay": "Εντάξει",
+    "cancel": "Ακύρωση",
+    "never_show_again": "Να μην εμφανιστεί ξανά",
+    "search": "Αναζήτηση ταινιών και σειρών"
+  },
+  "messages": {
+    "ratings": "Βαθμολογίες",
+    "out_of_10": "στα 10",
+    "produced_in": "Χώρες παραγωγής",
+    "produced_by": "Παραγωγή",
+    "website": "Επίσημη ιστοσελίδα",
+    "release_date": "Ημερομηνία κυκλοφορίας",
+    "show_more": "Εμφάνιση περισσότερων",
+    "show_less": "Εμφάνιση λιγότερων",
+    "no_reviews": "Δεν υπάρχουν διαθέσιμες κριτικές",
+    "unavailable": "Παρακαλώ ελέγξτε αργότερα",
+    "results_found": "{count, plural, =0 {Δεν βρέθηκαν αποτελέσματα} =1 {Βρέθηκε ένα αποτέλεσμα} other {Βρέθηκαν # αποτελέσματα}}",
+    "no_movies_found": "Δεν βρέθηκαν ταινίες",
+    "no_tv_series_found": "Δεν βρέθηκαν σειρές",
+    "movie_results": "Ταινίες για '{query}'",
+    "tv_series_results": "Σειρές για '{query}'"
+  },
+  "titles": {
+    "trending": "Δημοφιλείς Τώρα",
+    "weekly_popular": "Δημοφιλείς αυτήν την Εβδομάδα",
+    "action": "Blockbusters",
+    "comedy": "Κωμωδίες",
+    "horror": "Ταινίες Τρόμου",
+    "airing_today": "Προβάλλονται Σήμερα",
+    "top_rated_series": "Κορυφαίες Σειρές",
+    "information": "Πληροφορίες",
+    "reviews": "Κριτικές",
+    "more_like_this": "Προτεινόμενα"
+  },
+  "popovers": {
+    "next_episode_title": "Επόμενο επεισόδιο",
+    "next_episode_content": "Κάντε κλικ εδώ για να παρακολουθήσετε το επόμενο επεισόδιο της σειράς.",
+    "watchlist_title": "Λίστα παρακολούθησης",
+    "watchlist_content": "Κάντε κλικ εδώ για να περιηγηθείτε σε seasons και επεισόδια."
+  }
+}

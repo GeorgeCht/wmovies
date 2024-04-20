@@ -6,7 +6,8 @@ import { useRouter } from '@/components/i18n/navigation'
 import { Tooltip, Button, Chip, useDisclosure } from '@nextui-org/react'
 import { Volume2, VolumeX, Info } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchData, truncate, getVideoTrailer } from '@/lib/utils'
+import { fetchData, truncate, getVideoTrailer, formatLocale } from '@/lib/utils'
+import { useTranslations, useLocale } from 'next-intl'
 
 import useBGManager from '@/stores/bg-manager'
 import useTvSeriesTrackerStore from '@/stores/tv-series-tracker'
@@ -26,6 +27,8 @@ const HeroMovieDetails = ({
   const { setBackdrop, setVideo, mute, setMute } = useBGManager()
   const { setId, setData } = useTvSeriesTrackerStore()
   const router = useRouter()
+  const tActions = useTranslations('actions')
+  const locale = useLocale()
 
   // for managing episode picker modal disclosure
   const {
@@ -37,14 +40,14 @@ const HeroMovieDetails = ({
   const queryFn =
     mediaType === 'movie'
       ? fetchData<MovieDetailsWithImageAndVideos>(
-          `${mediaType}/${id}?append_to_response=images,videos`,
+          `${mediaType}/${id}?append_to_response=images,videos&language=${formatLocale(locale)}`,
         )
       : fetchData<TvDetailsWithImageAndVideos>(
-          `${mediaType}/${id}?append_to_response=images,videos`,
+          `${mediaType}/${id}?append_to_response=images,videos&language=${formatLocale(locale)}`,
         )
 
   const { isPending: loading, data } = useQuery({
-    queryKey: [`${mediaType}/${id}/details`],
+    queryKey: [`${mediaType}/${id}/details?language=${formatLocale(locale)}`],
     queryFn: async () => queryFn,
     staleTime: Infinity,
     refetchOnWindowFocus: false,
@@ -116,7 +119,7 @@ const HeroMovieDetails = ({
                 }
               >
                 <PlayIcon className={'sm:w-6 w-5 sm:h-6 h-5'} />
-                Watch Now
+                {tActions('watch')}
               </Button>
               {showMoreInfo && (
                 <Button
@@ -128,14 +131,14 @@ const HeroMovieDetails = ({
                   }
                 >
                   <Info className={'sm:w-6 w-5 sm:h-6 h-5'} />
-                  More info
+                  {tActions('more_info')}
                 </Button>
               )}
               <Tooltip
                 showArrow
                 delay={200}
                 placement={'right'}
-                content={'Unmute'}
+                content={mute === 1 ? tActions('unmute') : tActions('mute')}
                 classNames={{
                   base: ['before:bg-neutral-100 dark:before:bg-white'],
                   content: [

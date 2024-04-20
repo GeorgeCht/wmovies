@@ -1,11 +1,12 @@
 'use client'
 
-import { fetchData, formatDateDifference } from '@/lib/utils'
-import { Skeleton, cn } from '@nextui-org/react'
-import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react'
+import { fetchData, formatDateDifference, formatLocale } from '@/lib/utils'
+import { Skeleton, cn } from '@nextui-org/react'
+import { useQuery } from '@tanstack/react-query'
 import { AnimateHeight } from '../misc/animate-height'
+import { useLocale, useTranslations } from 'next-intl'
 
 const Term = ({
   className,
@@ -56,18 +57,25 @@ const Information = ({
   id: string
   mediaType: MediaType
 }) => {
+  const locale = useLocale()
+  const tMessage = useTranslations('messages')
   const [isExpanded, setIsExpanded] = useState(false)
   const { isPending: creditsLoading, data: creditsData } = useQuery({
-    queryKey: [`${mediaType}/${id}/credits`],
-    queryFn: async () => fetchData<Credits>(`${mediaType}/${id}/credits`),
+    queryKey: [`${mediaType}/${id}/credits?language=${formatLocale(locale)}`],
+    queryFn: async () =>
+      fetchData<Credits>(
+        `${mediaType}/${id}/credits?language=${formatLocale(locale)}`,
+      ),
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
   })
   const { isPending: detailsLoading, data: detailsData } = useQuery({
-    queryKey: [`${mediaType}/${id}/details`],
+    queryKey: [`${mediaType}/${id}/details?language=${formatLocale(locale)}`],
     queryFn: async () =>
-      fetchData<MovieDetailsWithImageAndVideos>(`${mediaType}/${id}`),
+      fetchData<MovieDetailsWithImageAndVideos>(
+        `${mediaType}/${id}?language=${formatLocale(locale)}`,
+      ),
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -171,7 +179,7 @@ const Information = ({
               {detailsData?.production_countries &&
                 detailsData?.production_countries.length > 0 && (
                   <div aria-roledescription={'production-countries'}>
-                    <Term>Produced in</Term>
+                    <Term>{tMessage('produced_in')}</Term>
                     {detailsData?.production_countries.map((country, index) => (
                       <Definition
                         key={index}
@@ -186,7 +194,7 @@ const Information = ({
               {detailsData?.production_companies &&
                 detailsData?.production_companies.length > 0 && (
                   <div aria-roledescription={'production-companies'}>
-                    <Term>Produced by</Term>
+                    <Term>{tMessage('produced_by')}</Term>
                     {detailsData?.production_companies.map((company, index) => (
                       <Definition
                         key={index}
@@ -200,7 +208,7 @@ const Information = ({
                 )}
               {detailsData?.homepage && (
                 <div aria-roledescription={'website'}>
-                  <Term>Official website</Term>
+                  <Term>{tMessage('website')}</Term>
                   <Link
                     href={detailsData.homepage || '/'}
                     target={'_blank'}
@@ -217,7 +225,7 @@ const Information = ({
               )}
               {mediaType === 'movie' && (
                 <div aria-roledescription={'production-companies'}>
-                  <Term>Release date</Term>
+                  <Term>{tMessage('release_date')}</Term>
                   <Definition
                     className={'pt-0'}
                     aria-roledescription={'release-date'}
@@ -237,7 +245,7 @@ const Information = ({
           )}
           onClick={() => setIsExpanded((state) => !state)}
         >
-          {isExpanded ? 'Show less' : 'Show more'}
+          {isExpanded ? tMessage('show_less') : tMessage('show_more')}
         </span>
       </AnimateHeight>
     </React.Fragment>

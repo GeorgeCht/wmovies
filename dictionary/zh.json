@@ -1,0 +1,61 @@
+{
+  "navigation": {
+    "movies": "电影",
+    "tv": "电视剧",
+    "trending": "热门",
+    "github": "Github",
+    "episode_list": "剧集列表",
+    "next_episode": "下一集"
+  },
+  "footer": {
+    "feedback": "反馈",
+    "disclaimer": "免责声明"
+  },
+  "actions": {
+    "watch": "立即观看",
+    "more_info": "更多信息",
+    "mute": "静音",
+    "unmute": "取消静音",
+    "copy_link": "复制链接",
+    "dismiss": "取消",
+    "okay": "确定",
+    "cancel": "取消",
+    "never_show_again": "不再显示",
+    "search": "搜索电影和电视剧"
+  },
+  "messages": {
+    "ratings": "评分",
+    "out_of_10": "满分10分",
+    "produced_in": "制作地",
+    "produced_by": "制作方",
+    "website": "官方网站",
+    "release_date": "发布日期",
+    "show_more": "显示更多",
+    "show_less": "显示更少",
+    "no_reviews": "暂无评论",
+    "unavailable": "请稍后再试",
+    "results_found": "{count, plural, =0 {未找到结果} =1 {找到一个结果} other {找到 # 个结果}}",
+    "no_movies_found": "未找到电影",
+    "no_tv_series_found": "未找到电视剧",
+    "movie_results": "关于'{query}'的电影",
+    "tv_series_results": "关于'{query}'的电视剧"
+  },
+  "titles": {
+    "trending": "当前热门",
+    "weekly_popular": "本周热门",
+    "action": "动作大片",
+    "comedy": "喜剧片",
+    "horror": "恐怖片",
+    "airing_today": "今日播出",
+    "top_rated_series": "高评分剧集",
+    "information": "信息",
+    "reviews": "评论",
+    "more_like_this": "更多类似内容"
+  },
+  "popovers": {
+    "next_episode_title": "下一集",
+    "next_episode_content": "点击这里观看该系列的下一集。",
+    "watchlist_title": "观看列表",
+    "watchlist_content": "点击这里浏览季节和剧集。"
+  }
+}

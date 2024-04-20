@@ -1,3 +1,4 @@
+import Footer from '@/components/layout/footer'
 import PageWrapper from '@/components/layout/page-wrapper'
 import Title from '@/components/ui/title'
 import TvCarousel from '@/components/ui/tv-carousel'
@@ -8,8 +9,8 @@ const Page = ({ params }: { params: { id: string } }) => {
     <React.Fragment>
       <PageWrapper
         single
-        query={`movie/${params.id}`}
-        mediaType={'movie'}
+        query={`tv/${params.id}`}
+        mediaType={'tv'}
         showMoreInfo={false}
         className={'w-full lg:w-[1024px] max-w-[1024px]'}
       >
@@ -29,6 +30,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             className={'pt-6'}
           />
         </div>
+        <Footer />
       </PageWrapper>
     </React.Fragment>
   )

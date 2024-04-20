@@ -1,8 +1,11 @@
 'use client'
 
-import React from 'react'
-import { Card, Image, Chip, cn } from '@nextui-org/react'
+import React, { useState } from 'react'
+import Image from 'next/image'
+
+import { Card, Chip, cn } from '@nextui-org/react'
 import { Link } from '../i18n/navigation'
+import { Root as AspectRatio } from '@radix-ui/react-aspect-ratio'
 
 const MovieCard = ({
   id,
@@ -10,8 +13,6 @@ const MovieCard = ({
   title,
   releaseYear,
   className,
-  width = 300,
-  height = 450,
 }: {
   id: number
   image: string
@@ -21,22 +22,33 @@ const MovieCard = ({
   width?: string | number
   height?: string | number
 }) => {
+  const [isLoaded, setIsLoaded] = useState(false)
   return (
     <Link
       scroll={false}
       href={`/movie/${String(id)}`}
-      className={cn('group block w-fit', className)}
+      className={cn('group block w-full relative', className)}
       aria-roledescription={'movie-card'}
     >
-      <Card radius={'lg'} className={'relative border-none w-fit'}>
-        <Image
-          loading={'lazy'}
-          alt={title}
-          className={'object-cover group-hover:scale-[1.015] !duration-700'}
-          src={`https://image.tmdb.org/t/p/w342${image}`}
-          width={width}
-          height={height}
-        />
+      <Card radius={'lg'} className={'relative border-none'}>
+        <AspectRatio ratio={3 / 4.5}>
+          <Image
+            fill
+            alt={title}
+            loading={'lazy'}
+            onLoad={() => setIsLoaded(true)}
+            className={'object-cover group-hover:scale-[1.015] !duration-700'}
+            src={`https://image.tmdb.org/t/p/w342${image}`}
+          />
+          <div
+            className={cn(
+              'w-full h-full absolute inset-0 z-10 bg-black/15 transition-all !duration-500',
+              isLoaded
+                ? 'opacity-0 backdrop-blur-none'
+                : 'opacity-100 backdrop-blur',
+            )}
+          />
+        </AspectRatio>
         <Chip
           size={'sm'}
           classNames={{
