@@ -16,8 +16,9 @@ import {
   locales,
 } from '@/components/i18n/navigation'
 import { useLocale } from 'next-intl'
+import { ChevronDown } from 'lucide-react'
 
-const LangSwitch = () => {
+const LangSwitch = ({ extended }: { extended?: boolean }) => {
   const locale = useLocale()
   const router = useRouter()
   const pathName = usePathname()
@@ -31,13 +32,24 @@ const LangSwitch = () => {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button
-          className={
-            'bg-white/10 text-tiny uppercase rounded-full font-bold min-w-unit-md h-unit-8'
-          }
-        >
-          {locale}
-        </Button>
+        {extended ? (
+          <Button
+            className={'bg-white/15 rounded-[10px] w-40 flex justify-between'}
+            endContent={
+              <ChevronDown strokeWidth={2.5} className={'w-3.5 h-3.5'} />
+            }
+          >
+            {localeNames[locale]}
+          </Button>
+        ) : (
+          <Button
+            className={
+              'bg-white/10 text-tiny uppercase rounded-full font-bold min-w-unit-md h-unit-8'
+            }
+          >
+            {locale}
+          </Button>
+        )}
       </DropdownTrigger>
       <DropdownMenu aria-label={'Language Switcher'}>
         <DropdownItem

@@ -14,6 +14,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchData, formatLocale } from '@/lib/utils'
 import { useInView } from 'framer-motion'
 import { useLocale } from 'next-intl'
+import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 import MovieCard from './movie-card'
 
 const MovieCarousel = ({
@@ -76,15 +77,11 @@ const MovieCarousel = ({
               )}
               key={index}
             >
-              <Skeleton className={'rounded-2xl mb-5'}>
-                <div
-                  style={{
-                    width: onModal ? 333 : 276,
-                    height: onModal ? 500 : 414,
-                  }}
-                  className={'w-[300px] h-[450px]'}
+              <AspectRatio ratio={3 / 4.5} className={'mb-5'}>
+                <Skeleton
+                  className={'w-full h-full object-cover rounded-2xl'}
                 />
-              </Skeleton>
+              </AspectRatio>
               <Skeleton className={'w-[67%] rounded-lg *:rounded-lg'}>
                 <div className={'h-4'} />
               </Skeleton>

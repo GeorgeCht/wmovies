@@ -22,7 +22,7 @@ const TvSeriesPage = ({ locale }: { locale: string }) => {
         <TvCarousel
           queryFlag
           query={`${query}${query.includes('?') ? '&' : '?'}page=${String(page + 1)}`}
-          className={'pt-6'}
+          className={'md:pt-6 pt-4'}
           onModal={false}
         />
       </section>

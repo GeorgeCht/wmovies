@@ -19,7 +19,7 @@ export default function Page({ params }: { params: { locale: string } }) {
           <TvCarousel
             queryFlag
             query={'trending/tv/day?page=2'}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
         </div>
@@ -33,7 +33,7 @@ export default function Page({ params }: { params: { locale: string } }) {
           <TvCarousel
             queryFlag
             query={`trending/tv/week?page=3`}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
         </div>
@@ -47,7 +47,7 @@ export default function Page({ params }: { params: { locale: string } }) {
           <TvCarousel
             queryFlag
             query={`tv/airing_today?page=2`}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
         </div>
@@ -57,7 +57,7 @@ export default function Page({ params }: { params: { locale: string } }) {
           <TvCarousel
             queryFlag
             query={`tv/top_rated?page=2`}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
         </div>

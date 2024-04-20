@@ -12,6 +12,7 @@ import MainWrapper from '@/components/layout/main-wrapper'
 import ProgressiveBackground from '@/components/layout/progressive-bg'
 
 import '../globals.css'
+import MobileNavigation from '@/components/layout/mobile-navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,6 +26,7 @@ export const viewport: Viewport = {
   themeColor: 'dark',
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 1,
 }
 
 export default function LocaleLayout({
@@ -53,6 +55,7 @@ export default function LocaleLayout({
                 }
               />
               <MainWrapper>
+                <MobileNavigation />
                 <SearchBar />
                 {children}
                 <NoSsr>{modal}</NoSsr>

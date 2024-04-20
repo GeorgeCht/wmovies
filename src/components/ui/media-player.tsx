@@ -3,7 +3,7 @@
 import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react'
 import { Spinner, cn } from '@nextui-org/react'
 import { motion as Motion } from 'framer-motion'
-import { animateVariants, fetchData } from '@/lib/utils'
+import { animateVariants, fetchData, formatLocale } from '@/lib/utils'
 import { ChevronLeft } from 'lucide-react'
 import { useRouter } from '../i18n/navigation'
 import { useQuery } from '@tanstack/react-query'
@@ -11,6 +11,7 @@ import { useIdle } from '@uidotdev/usehooks'
 import { useScreenSize } from '@/lib/hooks'
 
 import Title from './title'
+import { useLocale } from 'next-intl'
 
 const MediaPlayer = ({
   mediaType,
@@ -29,14 +30,19 @@ const MediaPlayer = ({
   const router = useRouter()
   const idle = useIdle(4500)
   const screenSize = useScreenSize()
+  const locale = useLocale()
 
   const queryFn =
     mediaType === 'movie'
-      ? fetchData<MovieDetailsWithImageAndVideos>(`${mediaType}/${id}`)
-      : fetchData<TvDetailsWithImageAndVideos>(`${mediaType}/${id}`)
+      ? fetchData<MovieDetailsWithImageAndVideos>(
+          `${mediaType}/${id}?language=${formatLocale(locale)}`,
+        )
+      : fetchData<TvDetailsWithImageAndVideos>(
+          `${mediaType}/${id}?language=${formatLocale(locale)}`,
+        )
 
   const { data } = useQuery({
-    queryKey: [`${mediaType}/${id}/details`],
+    queryKey: [`${mediaType}/${id}/details?language=${formatLocale(locale)}`],
     queryFn: async () => queryFn,
     staleTime: Infinity,
     refetchOnWindowFocus: false,
@@ -89,7 +95,7 @@ const MediaPlayer = ({
         {...props}
       >
         <iframe
-          className={'w-full h-full'}
+          className={'w-full h-screen h-dvh'}
           onLoadedData={() => setIsLoaded(true)}
           onLoad={() => setIsLoaded(true)}
           src={
@@ -127,7 +133,8 @@ const MediaPlayer = ({
         >
           <div
             className={cn(
-              'absolute flex items-start w-screen h-36 top-0 left-0 z-10 px-3 md:px-9 pt-5 md:pt-7 bg-gradient-to-b from-black from-25% via-black/60 via-60% to-transparent transition-all !duration-1000',
+              'absolute flex items-start w-screen h-36 top-0 left-0 z-10 px-3 md:px-9 pt-7',
+              'bg-gradient-to-b from-black from-25% via-black/60 via-60% to-transparent transition-all !duration-1000',
               idle && screenSize.width >= 768 ? 'opacity-0' : 'opacity-100',
             )}
           >

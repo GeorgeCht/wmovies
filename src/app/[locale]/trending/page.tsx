@@ -25,19 +25,19 @@ export default function Page({ params }: { params: { locale: string } }) {
           <MovieCarousel
             queryFlag
             query={'trending/movie/week?page=2'}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
           <MovieCarousel
             queryFlag
             query={'trending/movie/week?page=3'}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
           <MovieCarousel
             queryFlag
             query={'trending/movie/week?page=4'}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
         </div>
@@ -47,19 +47,19 @@ export default function Page({ params }: { params: { locale: string } }) {
           <TvCarousel
             queryFlag
             query={'trending/tv/week?page=2'}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
           <TvCarousel
             queryFlag
             query={'trending/tv/week?page=3'}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
           <TvCarousel
             queryFlag
             query={'trending/tv/week?page=4'}
-            className={'pt-6'}
+            className={'md:pt-6 pt-4'}
             onModal={false}
           />
         </div>

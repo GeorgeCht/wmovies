@@ -37,7 +37,7 @@ const PageWrapper = ({
       <React.Fragment>
         <div
           className={cn(
-            'flex flex-col justify-end h-[50vh] xl:mb-24 lg:mb-20 mb-10',
+            'flex flex-col justify-end h-[50vh] min-h-[482px] xl:mb-24 lg:mb-20 mb-10',
             className,
           )}
         >

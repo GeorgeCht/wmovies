@@ -62,4 +62,16 @@
       transparent 100%
     );
   }
+  .backdrop-blur-fix {
+    @apply relative;
+    @apply overflow-hidden;
+  }
+  .backdrop-blur-fix::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 }

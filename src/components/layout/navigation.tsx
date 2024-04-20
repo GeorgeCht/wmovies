@@ -214,7 +214,7 @@ const Navigation = ({
                     },
                   })}
                 >
-                  {hasNextEpisode && (
+                  {hasNextEpisode && screenSize.width >= 768 && (
                     <li className={'mb-6'}>
                       <Popover
                         showArrow
@@ -312,125 +312,127 @@ const Navigation = ({
                       </Popover>
                     </li>
                   )}
-                  <li className={'mb-6'}>
-                    <Popover
-                      showArrow
-                      key={'popover-watchlist'}
-                      placement={'right'}
-                      offset={30}
-                      isOpen={popoverIsOpen.watchList}
-                      classNames={{
-                        content: ['bg-neutral-900'],
-                      }}
-                      motionProps={{
-                        ...animateVariants({
-                          initial: {
-                            opacity: 0,
-                          },
-                          enter: {
-                            opacity: 1,
-                          },
-                          exit: {
-                            opacity: 0,
-                            transition: {
-                              ease: 'easeOut',
+                  {screenSize.width >= 768 && (
+                    <li className={'mb-6'}>
+                      <Popover
+                        showArrow
+                        key={'popover-watchlist'}
+                        placement={'right'}
+                        offset={30}
+                        isOpen={popoverIsOpen.watchList}
+                        classNames={{
+                          content: ['bg-neutral-900'],
+                        }}
+                        motionProps={{
+                          ...animateVariants({
+                            initial: {
+                              opacity: 0,
                             },
-                          },
-                        }),
-                      }}
-                    >
-                      <PopoverTrigger>
-                        <Button
-                          className={
-                            '!bg-transparent hover:!bg-transparent active:!bg-transparent w-fit h-fit p-0'
-                          }
-                        >
-                          <li className={'flex justify-center'}>
-                            <Tooltip
-                              showArrow
-                              placement={'right'}
-                              content={tNavigation('episode_list')}
-                              classNames={{
-                                base: [
-                                  'before:bg-neutral-100 dark:before:bg-white',
-                                ],
-                                content: [
-                                  'py-2 px-4 shadow-xl text-black text-[13px] font-semibold',
-                                  'bg-gradient-to-br from-white to-neutral-100 rounded-lg',
-                                ],
-                              }}
-                            >
-                              <span className={'inline-block'}>
-                                <span
-                                  onClick={() => episodePickerOnOpen()}
-                                  className={
-                                    'group relative inline-block rounded-md p-2 hover:bg-white/10 transition-all'
-                                  }
-                                >
-                                  <List
-                                    width={22}
-                                    height={22}
+                            enter: {
+                              opacity: 1,
+                            },
+                            exit: {
+                              opacity: 0,
+                              transition: {
+                                ease: 'easeOut',
+                              },
+                            },
+                          }),
+                        }}
+                      >
+                        <PopoverTrigger>
+                          <Button
+                            className={
+                              '!bg-transparent hover:!bg-transparent active:!bg-transparent w-fit h-fit p-0'
+                            }
+                          >
+                            <li className={'flex justify-center'}>
+                              <Tooltip
+                                showArrow
+                                placement={'right'}
+                                content={tNavigation('episode_list')}
+                                classNames={{
+                                  base: [
+                                    'before:bg-neutral-100 dark:before:bg-white',
+                                  ],
+                                  content: [
+                                    'py-2 px-4 shadow-xl text-black text-[13px] font-semibold',
+                                    'bg-gradient-to-br from-white to-neutral-100 rounded-lg',
+                                  ],
+                                }}
+                              >
+                                <span className={'inline-block'}>
+                                  <span
+                                    onClick={() => episodePickerOnOpen()}
                                     className={
-                                      'opacity-60 group-hover:opacity-100 transition-all'
+                                      'group relative inline-block rounded-md p-2 hover:bg-white/10 transition-all'
                                     }
-                                  />
+                                  >
+                                    <List
+                                      width={22}
+                                      height={22}
+                                      className={
+                                        'opacity-60 group-hover:opacity-100 transition-all'
+                                      }
+                                    />
+                                  </span>
                                 </span>
-                              </span>
-                            </Tooltip>
-                          </li>
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent>
-                        <div className={'px-1 py-2 child:cursor-default'}>
-                          <p
-                            className={
-                              'text-base font-semibold text-white leading-[1.3em]'
-                            }
-                          >
-                            {tPopovers('watchlist_title')}
-                          </p>
-                          <p
-                            className={
-                              'text-sm font-normal text-white/75 leading-none pt-1.5 pb-1'
-                            }
-                          >
-                            {tPopovers('watchlist_content')}
-                          </p>
-                          <div className={'flex gap-2 pt-1.5'}>
-                            <Button
-                              className={'bg-neutral-700'}
-                              onClick={() => {
-                                setPopoverIsOpen((state) => ({
-                                  ...state,
-                                  watchList: false,
-                                }))
-                              }}
-                            >
-                              {tActions('okay')}
-                            </Button>
-                            <Button
+                              </Tooltip>
+                            </li>
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent>
+                          <div className={'px-1 py-2 child:cursor-default'}>
+                            <p
                               className={
-                                'hover:!bg-neutral-700 border-neutral-700'
+                                'text-base font-semibold text-white leading-[1.3em]'
                               }
-                              variant={'ghost'}
-                              onClick={() => {
-                                setPopoverIsOpen((state) => ({
-                                  ...state,
-                                  watchList: false,
-                                }))
-                                localStorage.setItem(
-                                  'showNextEpisodeTip',
-                                  'false',
-                                )
-                              }}
                             >
-                              {tActions('never_show_again')}
-                            </Button>
+                              {tPopovers('watchlist_title')}
+                            </p>
+                            <p
+                              className={
+                                'text-sm font-normal text-white/75 leading-none pt-1.5 pb-1'
+                              }
+                            >
+                              {tPopovers('watchlist_content')}
+                            </p>
+                            <div className={'flex gap-2 pt-1.5'}>
+                              <Button
+                                className={'bg-neutral-700'}
+                                onClick={() => {
+                                  setPopoverIsOpen((state) => ({
+                                    ...state,
+                                    watchList: false,
+                                  }))
+                                }}
+                              >
+                                {tActions('okay')}
+                              </Button>
+                              <Button
+                                className={
+                                  'hover:!bg-neutral-700 border-neutral-700'
+                                }
+                                variant={'ghost'}
+                                onClick={() => {
+                                  setPopoverIsOpen((state) => ({
+                                    ...state,
+                                    watchList: false,
+                                  }))
+                                  localStorage.setItem(
+                                    'showNextEpisodeTip',
+                                    'false',
+                                  )
+                                }}
+                              >
+                                {tActions('never_show_again')}
+                              </Button>
+                            </div>
                           </div>
-                        </div>
-                      </PopoverContent>
-                    </Popover>
-                  </li>
+                        </PopoverContent>
+                      </Popover>
+                    </li>
+                  )}
 
                   <div className={'block h-[1px] w-full bg-white/15 mb-6'} />
                 </Motion.div>

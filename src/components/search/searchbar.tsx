@@ -41,7 +41,13 @@ const SearchBar = ({
     // handleSearch(value)
   }
   return (
-    <div className={cn('flex w-full sm:max-w-96 mb-6', className)} {...props}>
+    <div
+      className={cn(
+        'flex w-[calc(100%-56px)] sm:max-w-96 mb-6 z-[9999]',
+        className,
+      )}
+      {...props}
+    >
       <Input
         type={'text'}
         placeholder={tActions('search')}
@@ -50,10 +56,12 @@ const SearchBar = ({
         value={searchTerm}
         // onValueChange={handleChange}
         classNames={{
-          input: ['bg-transparent text-white/90', 'placeholder:text-white/60'],
+          input: [
+            'bg-transparent z-10 text-white/90 placeholder:text-white/60',
+          ],
           innerWrapper: 'bg-transparent',
           inputWrapper: [
-            'bg-white/15 backdrop-blur sm:h-unit-12 h-unit-10 sm:px-5 px-4',
+            'bg-white/10 backdrop-blur-fix before:rounded-full h-unit-12 px-0 ',
             'data-[hover=true]:bg-white/20 !cursor-text',
             'group-data-[focus=true]:bg-white/20',
           ],
@@ -61,7 +69,7 @@ const SearchBar = ({
         startContent={
           <Search
             className={
-              'text-neutral-400 pointer-events-none flex-shrink-0 -ml-1 pr-0.5'
+              'text-neutral-400 z-10 pointer-events-none flex-shrink-0 ml-4 pr-0.5'
             }
           />
         }
