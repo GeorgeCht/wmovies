@@ -3,10 +3,10 @@
 import React from 'react'
 import MoviesPage from '@/components/pages/movies'
 
-export default function Page({ params }: { params: { locale: string } }) {
+export default function Page() {
   return (
     <React.Fragment>
-      <MoviesPage locale={params.locale} />
+      <MoviesPage />
     </React.Fragment>
   )
 }

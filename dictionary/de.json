@@ -11,6 +11,10 @@
     "feedback": "Feedback",
     "disclaimer": "Haftungsausschluss"
   },
+  "time": {
+    "hours": "Std.",
+    "minutes": "Min."
+  },
   "actions": {
     "watch": "Jetzt ansehen",
     "more_info": "Mehr Info",

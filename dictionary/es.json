@@ -11,6 +11,10 @@
     "feedback": "Comentarios",
     "disclaimer": "Aviso legal"
   },
+  "time": {
+    "hours": "h",
+    "minutes": "min"
+  },
   "actions": {
     "watch": "Ver ahora",
     "more_info": "Más información",

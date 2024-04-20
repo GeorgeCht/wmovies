@@ -5,8 +5,8 @@ import {
   Modal,
   ModalContent,
   ModalBody,
-  cn,
   ModalFooter,
+  cn,
 } from '@nextui-org/react'
 import { findLastCanonUrl } from '@/lib/utils'
 import { useScreenSize } from '@/lib/hooks'
@@ -28,9 +28,9 @@ const Page = ({ params }: { params: { id: string; locale: string } }) => {
   const router = useRouter()
   const idle = useIdle(4500)
   const screenSize = useScreenSize()
+  const tTitle = useTranslations('titles')
   const [isOpen, setIsOpen] = useState(true)
   const { urls } = useInterceptorStore()
-  const tTitle = useTranslations('titles')
 
   return (
     <React.Fragment>

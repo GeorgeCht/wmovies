@@ -11,6 +11,10 @@
     "feedback": "피드백",
     "disclaimer": "면책 조항"
   },
+  "time": {
+    "hours": "시간",
+    "minutes": "분"
+  },
   "actions": {
     "watch": "지금 시청",
     "more_info": "더보기",

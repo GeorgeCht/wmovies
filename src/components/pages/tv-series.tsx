@@ -1,24 +1,25 @@
 'use client'
 
 import PageWrapper from '@/components/layout/page-wrapper'
-import MovieCarousel from '@/components/ui/movie-carousel'
+import TvCarousel from '@/components/ui/tv-carousel'
 import Title from '@/components/ui/title'
 import Footer from '@/components/layout/footer'
 import React from 'react'
 import { useTranslations } from 'next-intl'
+import { formatLocale } from '@/lib/utils'
 
-const MoviesPage = () => {
+const TvSeriesPage = ({ locale }: { locale: string }) => {
   const tTitle = useTranslations('titles')
   const renderSection = (title: string, query: string, page: number = 1) => {
     return (
       <section className={'lg:mb-20 mb-10'}>
         <Title onModal={false}>{tTitle(title)}</Title>
-        <MovieCarousel
+        <TvCarousel
           queryFlag
           query={`${query}${query.includes('?') ? '&' : '?'}page=${String(page)}`}
           onModal={false}
         />
-        <MovieCarousel
+        <TvCarousel
           queryFlag
           query={`${query}${query.includes('?') ? '&' : '?'}page=${String(page + 1)}`}
           className={'pt-6'}
@@ -29,24 +30,27 @@ const MoviesPage = () => {
   }
 
   return (
-    <PageWrapper multiple query={`trending/movie/day`}>
-      {renderSection('trending', 'trending/movie/day')}
-      {renderSection('weekly_popular', 'trending/movie/week', 2)}
+    <PageWrapper
+      multiple
+      query={`trending/tv/day?language=${formatLocale(locale)}`}
+    >
+      {renderSection('trending', 'trending/tv/day')}
+      {renderSection('weekly_popular', 'trending/tv/week', 2)}
       {renderSection(
         'action',
-        'discover/movie?include_adult=false&include_video=false&sort_by=popularity.desc&with_genres=28',
+        'discover/tv?include_adult=false&include_video=false&sort_by=popularity.desc&with_genres=28',
       )}
       {renderSection(
         'comedy',
-        'discover/movie?include_adult=false&include_video=false&sort_by=popularity.desc&with_genres=35',
+        'discover/tv?include_adult=false&include_video=false&sort_by=popularity.desc&with_genres=35',
       )}
       {renderSection(
         'horror',
-        'discover/movie?include_adult=false&include_video=false&sort_by=popularity.desc&with_genres=27',
+        'discover/tv?include_adult=false&include_video=false&sort_by=popularity.desc&with_genres=27',
       )}
       <Footer />
     </PageWrapper>
   )
 }
 
-export default MoviesPage
+export default TvSeriesPage

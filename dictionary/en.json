@@ -11,6 +11,10 @@
     "feedback": "Feedback",
     "disclaimer": "Disclaimer"
   },
+  "time": {
+    "hours": "h",
+    "minutes": "m"
+  },
   "actions": {
     "watch": "Watch Now",
     "more_info": "More Info",
@@ -24,6 +28,8 @@
     "search": "Search movies and tv series"
   },
   "messages": {
+    "season": "Season",
+    "episodes": "Episodes",
     "ratings": "Ratings",
     "out_of_10": "out of 10",
     "produced_in": "Produced in",

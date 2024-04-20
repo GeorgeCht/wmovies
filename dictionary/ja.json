@@ -11,6 +11,10 @@
     "feedback": "フィードバック",
     "disclaimer": "免責事項"
   },
+  "time": {
+    "hours": "時間",
+    "minutes": "分"
+  },
   "actions": {
     "watch": "今すぐ視聴",
     "more_info": "詳細",

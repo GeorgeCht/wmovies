@@ -1,7 +1,4 @@
-import { cn } from '@nextui-org/react'
 import React, { DetailedHTMLProps, HTMLAttributes } from 'react'
-import Ratings from './ratings'
-import { formatDateDifference } from '@/lib/utils'
 import {
   Modal,
   ModalContent,
@@ -11,9 +8,11 @@ import {
   Button,
   useDisclosure,
 } from '@nextui-org/react'
-import Seperator from '../modal/seperator'
+import { cn } from '@nextui-org/react'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
-import { useTranslations } from 'next-intl'
+import { useFormatter, useTranslations } from 'next-intl'
+import Ratings from './ratings'
+import Seperator from '../modal/seperator'
 
 const ReviewCard = ({
   review,
@@ -26,6 +25,7 @@ const ReviewCard = ({
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const tActions = useTranslations('actions')
+  const format = useFormatter()
 
   return (
     <React.Fragment>
@@ -45,7 +45,7 @@ const ReviewCard = ({
             'text-xs font-semibold text-white/50 leading-none overflow-hidden truncate w-full line-clamp-1 pt-1'
           }
         >
-          {review.author}, {formatDateDifference(review.created_at)}
+          {review.author}, {format.relativeTime(new Date(review.created_at))}
         </p>
         <div
           dangerouslySetInnerHTML={{ __html: review.content }}
@@ -76,7 +76,8 @@ const ReviewCard = ({
                     'text-sm font-medium text-white/50 leading-none pt-2 cursor-default'
                   }
                 >
-                  {review.author}, {formatDateDifference(review.created_at)}
+                  {review.author},{' '}
+                  {format.relativeTime(new Date(review.created_at))}
                 </p>
               </ModalHeader>
               <Seperator className={'border-white/10'} />

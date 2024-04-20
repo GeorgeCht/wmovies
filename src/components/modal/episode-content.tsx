@@ -11,7 +11,7 @@ import {
 } from '@nextui-org/react'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useQuery } from '@tanstack/react-query'
-import { detectNullSeasons, fetchData } from '@/lib/utils'
+import { detectNullSeasons, fetchData, formatLocale } from '@/lib/utils'
 import { ChevronDown } from 'lucide-react'
 
 import React from 'react'
@@ -20,6 +20,7 @@ import Title from '@/components/ui/title'
 import ModalBackground from '@/components/modal/background'
 import Seperator from '@/components/modal/seperator'
 import EpisodeList from '@/components/modal/episode-list'
+import { useLocale, useTranslations } from 'next-intl'
 
 const EpisodeContent = ({
   id,
@@ -35,9 +36,14 @@ const EpisodeContent = ({
   // eslint-disable-next-line no-unused-vars
   setIsOpen?: (value: React.SetStateAction<boolean>) => void
 }) => {
+  const locale = useLocale()
+  const tMessage = useTranslations('messages')
   const { isPending: loading, data } = useQuery({
-    queryKey: [`tv/${id}/season/${season}`],
-    queryFn: async () => fetchData<TvSeason>(`tv/${id}/season/${season}`),
+    queryKey: [`tv/${id}/season/${season}?language=${formatLocale(locale)}`],
+    queryFn: async () =>
+      fetchData<TvSeason>(
+        `tv/${id}/season/${season}?language=${formatLocale(locale)}`,
+      ),
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -73,7 +79,7 @@ const EpisodeContent = ({
               }
             >
               <Title onModal className={'mt-1'}>
-                Episodes
+                {tMessage('episodes')}
               </Title>
               <Dropdown className={'bg-neutral-900 rounded-[10px]'}>
                 <DropdownTrigger>
@@ -88,7 +94,7 @@ const EpisodeContent = ({
                       />
                     }
                   >
-                    Season {season}
+                    {tMessage('season')} {season}
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu
@@ -103,7 +109,7 @@ const EpisodeContent = ({
                         aria-label={`season-${i + 1}`}
                         onClick={() => setSeason(i + 1)}
                       >
-                        Season {i + 1}
+                        {tMessage('season')} {i + 1}
                       </DropdownItem>
                     ))}
                   </DropdownSection>

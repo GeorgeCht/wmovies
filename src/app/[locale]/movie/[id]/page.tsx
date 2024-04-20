@@ -1,21 +1,27 @@
+'use client'
+
 import Footer from '@/components/layout/footer'
 import PageWrapper from '@/components/layout/page-wrapper'
 import MovieCarousel from '@/components/ui/movie-carousel'
 import Title from '@/components/ui/title'
 import React from 'react'
 
-const Page = ({ params }: { params: { id: string } }) => {
+import { useTranslations } from 'next-intl'
+import { formatLocale } from '@/lib/utils'
+
+const Page = ({ params }: { params: { id: string; locale: string } }) => {
+  const tTitle = useTranslations('titles')
   return (
     <React.Fragment>
       <PageWrapper
         single
-        query={`movie/${params.id}`}
+        query={`movie/${params.id}?language=${formatLocale(params.locale)}`}
         mediaType={'movie'}
         showMoreInfo={false}
         className={'w-full lg:w-[1024px] max-w-[1024px]'}
       >
         <div className={'lg:mb-20 mb-10'}>
-          <Title>You May Also Like</Title>
+          <Title>{tTitle('more_like_this')}</Title>
           <MovieCarousel
             id={params.id}
             mediaType={'movie'}

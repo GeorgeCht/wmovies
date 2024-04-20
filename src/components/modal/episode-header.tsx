@@ -3,6 +3,7 @@ import Ratings from '@/components/ui/ratings'
 import { Chip, Skeleton, cn } from '@nextui-org/react'
 import { AnimateHeight } from '@/components/misc/animate-height'
 import { truncate } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 
 const EpisodeHeader = ({
   loading,
@@ -15,6 +16,7 @@ const EpisodeHeader = ({
   episodeData: TvSeason
   detailsData: TvDetailsWithImageAndVideos
 }) => {
+  const tMessage = useTranslations('messages')
   const [expandOverview, setExpandOverview] = useState(false)
   if (loading) {
     return (
@@ -54,7 +56,7 @@ const EpisodeHeader = ({
           'text-balance font-semibold md:text-4xl sm:text-3xl text-2xl leading-none tracking-tighter cursor-default'
         }
       >
-        Season {season}
+        {tMessage('season')} {season}
       </h1>
       <div className={'relative mb-3'}>
         <AnimateHeight>

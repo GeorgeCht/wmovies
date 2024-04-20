@@ -11,6 +11,10 @@
     "feedback": "反馈",
     "disclaimer": "免责声明"
   },
+  "time": {
+    "hours": "小时",
+    "minutes": "分钟"
+  },
   "actions": {
     "watch": "立即观看",
     "more_info": "更多信息",

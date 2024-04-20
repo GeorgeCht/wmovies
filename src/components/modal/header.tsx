@@ -45,6 +45,7 @@ const Header = ({
   const { setId, setData } = useTvSeriesTrackerStore()
   const locale = useLocale()
   const tActions = useTranslations('actions')
+  const tTime = useTranslations('time')
   const router = useRouter()
   const pathname = usePathname()
 
@@ -181,7 +182,11 @@ const Header = ({
                   }}
                 >
                   <Clock className={'w-3 h-3 text-white'} />
-                  {formatDuration(data?.runtime!) || 'N/A'}
+                  {formatDuration(
+                    data?.runtime!,
+                    tTime('hours'),
+                    tTime('minutes'),
+                  ) || 'N/A'}
                 </Chip>
               </li>
             )}

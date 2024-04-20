@@ -11,6 +11,10 @@
     "feedback": "Feedback",
     "disclaimer": "Αποποίηση Ευθυνών"
   },
+  "time": {
+    "hours": "ω",
+    "minutes": "λ"
+  },
   "actions": {
     "watch": "Παρακολούθηση",
     "more_info": "Περισσότερα",
@@ -24,6 +28,8 @@
     "search": "Αναζήτηση ταινιών και σειρών"
   },
   "messages": {
+    "season": "Σεζόν",
+    "episodes": "Επεισόδια",
     "ratings": "Βαθμολογίες",
     "out_of_10": "στα 10",
     "produced_in": "Χώρες παραγωγής",

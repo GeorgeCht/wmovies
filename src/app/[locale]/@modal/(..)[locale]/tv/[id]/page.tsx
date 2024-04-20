@@ -13,6 +13,7 @@ import { useScreenSize } from '@/lib/hooks'
 import { useRouter } from '@/components/i18n/navigation'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useIdle } from '@uidotdev/usehooks'
+import { useTranslations } from 'next-intl'
 
 import useInterceptorStore from '@/stores/interceptor'
 import TvCarousel from '@/components/ui/tv-carousel'
@@ -27,6 +28,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   const router = useRouter()
   const idle = useIdle(4500)
   const screenSize = useScreenSize()
+  const tTitle = useTranslations('titles')
   const [isOpen, setIsOpen] = useState(true)
   const { urls } = useInterceptorStore()
 
@@ -96,18 +98,18 @@ const Page = ({ params }: { params: { id: string } }) => {
               >
                 <Seperator className={'pb-3'} />
 
-                <Title onModal>Information</Title>
+                <Title onModal>{tTitle('information')}</Title>
                 <Information mediaType={'tv'} id={params.id} />
 
                 <Seperator className={'pb-3 mt-4'} />
 
-                <Title onModal>Reviews</Title>
+                <Title onModal>{tTitle('reviews')}</Title>
                 <Reviews mediaType={'tv'} id={params.id} onModal />
 
                 <Seperator className={'pb-3 mt-4'} />
 
                 <Title onModal className={'sm:pb-3 pb-2'}>
-                  More Like This
+                  {tTitle('more_like_this')}
                 </Title>
                 <TvCarousel onModal id={params.id} query={'/recommendations'} />
                 <TvCarousel

@@ -50,17 +50,21 @@ export const getVideoTrailer = (
   return result || videoResults[0]
 }
 
-export const formatDuration = (duration: number): string => {
+export const formatDuration = (
+  duration: number,
+  h: string = 'h',
+  m: string = 'm',
+): string => {
   if (duration < 60) {
-    return `${duration}m`
+    return `${duration}${m}`
   } else {
     const hours = Math.floor(duration / 60)
     const minutes = duration % 60
 
     if (minutes > 0) {
-      return `${hours}h${minutes}`
+      return `${hours}${h}${minutes}${m}`
     } else {
-      return `${hours}h`
+      return `${hours}${h}`
     }
   }
 }
