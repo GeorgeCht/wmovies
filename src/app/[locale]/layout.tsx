@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { cn } from '@nextui-org/react'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
+import { Suspense } from 'react'
 
 import NoSsr from '@/components/misc/no-ssr'
 import Providers from '@/components/layout/providers'
@@ -10,10 +11,10 @@ import Navigation from '@/components/layout/navigation'
 import SearchBar from '@/components/search/searchbar'
 import MainWrapper from '@/components/layout/main-wrapper'
 import ProgressiveBackground from '@/components/layout/progressive-bg'
+import MobileNavigation from '@/components/layout/mobile-navigation'
 
 import '../globals.css'
-import MobileNavigation from '@/components/layout/mobile-navigation'
-import { Suspense } from 'react'
+import LoadingSpinner from '@/components/misc/spinner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -45,29 +46,31 @@ export default function LocaleLayout({
   return (
     <html lang={locale}>
       <body className={cn(inter.className, 'dark bg-black min-h-screen')}>
-        <NextIntlClientProvider messages={messages}>
-          <Providers>
-            <Navigation />
-            <div className={'w-full h-full'}>
-              <ProgressiveBackground />
-              <div
-                className={
-                  'fixed block w-full h-full top-0 left-0 bg-gradient-to-t from-black to-black/40'
-                }
-              />
-              <MainWrapper>
-                <MobileNavigation />
-                <SearchBar />
-                <Suspense
-                  fallback={<h1 className={'text-[300px]'}>Loading</h1>}
-                >
-                  {children}
-                </Suspense>
-                <NoSsr>{modal}</NoSsr>
-              </MainWrapper>
-            </div>
-          </Providers>
-        </NextIntlClientProvider>
+        <Suspense fallback={<LoadingSpinner />}>
+          <NextIntlClientProvider messages={messages}>
+            <Providers>
+              <Suspense fallback={<LoadingSpinner />}>
+                <Navigation />
+                <div className={'w-full h-full'}>
+                  <ProgressiveBackground />
+                  <div
+                    className={
+                      'fixed block w-full h-full top-0 left-0 bg-gradient-to-t from-black to-black/40'
+                    }
+                  />
+                  <MainWrapper>
+                    <MobileNavigation />
+                    <SearchBar />
+                    <Suspense fallback={<LoadingSpinner />}>
+                      {children}
+                    </Suspense>
+                    <NoSsr>{modal}</NoSsr>
+                  </MainWrapper>
+                </div>
+              </Suspense>
+            </Providers>
+          </NextIntlClientProvider>
+        </Suspense>
       </body>
     </html>
   )

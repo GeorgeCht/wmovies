@@ -29,6 +29,8 @@
     "search": "Buscar películas y series de TV"
   },
   "messages": {
+    "season": "Temporada",
+    "episodes": "Episodios",
     "ratings": "Calificaciones",
     "out_of_10": "de 10",
     "produced_in": "Producido en",

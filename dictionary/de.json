@@ -29,6 +29,8 @@
     "search": "Filme und TV-Serien suchen"
   },
   "messages": {
+    "season": "Staffel",
+    "episodes": "Episoden",
     "ratings": "Bewertungen",
     "out_of_10": "von 10",
     "produced_in": "Produziert in",

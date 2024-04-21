@@ -29,12 +29,12 @@ const MovieCard = memo(
         aria-roledescription={'movie-card'}
       >
         <Card radius={'lg'} className={'relative border-none'}>
-          <AspectRatio ratio={3 / 4.5}>
+          <AspectRatio ratio={3 / 4.5} className={'child:!h-full'}>
             <Image
               alt={title}
               loading={'lazy'}
               className={
-                'object-cover group-hover:scale-[1.015] !duration-700 w-full h-full'
+                'object-cover w-full h-full group-hover:scale-[1.015] !duration-700'
               }
               src={`https://image.tmdb.org/t/p/w342${image}`}
             />

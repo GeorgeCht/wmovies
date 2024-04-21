@@ -29,6 +29,8 @@
     "search": "映画やテレビシリーズを検索"
   },
   "messages": {
+    "season": "シーズン",
+    "episodes": "エピソード",
     "ratings": "評価",
     "out_of_10": "10点満点中",
     "produced_in": "制作地",

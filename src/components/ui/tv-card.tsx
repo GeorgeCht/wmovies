@@ -29,7 +29,7 @@ const TvCard = memo(
         aria-roledescription={'tv-card'}
       >
         <Card radius={'lg'} className={'relative border-none'}>
-          <AspectRatio ratio={3 / 4.5}>
+          <AspectRatio ratio={3 / 4.5} className={'child:!h-full'}>
             <Image
               alt={title}
               loading={'lazy'}

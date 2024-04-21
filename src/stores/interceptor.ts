@@ -22,7 +22,14 @@ const useInterceptorStore = create(
     (set) => ({
       ...initialState,
       pushUrl: (url: string) =>
-        set((state) => ({ urls: [...state.urls, url] })),
+        set((state) => ({
+          urls:
+            // Holds max 15 urls
+            state.urls.length >= 15
+              ? [...state.urls.slice(1), url]
+              : [...state.urls, url],
+        })),
+
       setIsOpen: (newState: boolean) => set(() => ({ isOpen: newState })),
     }),
     {

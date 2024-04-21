@@ -29,6 +29,8 @@
     "search": "搜索电影和电视剧"
   },
   "messages": {
+    "season": "季",
+    "episodes": "集",
     "ratings": "评分",
     "out_of_10": "满分10分",
     "produced_in": "制作地",

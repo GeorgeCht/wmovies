@@ -29,6 +29,8 @@
     "search": "영화 및 TV 시리즈 검색"
   },
   "messages": {
+    "season": "시즌",
+    "episodes": "에피소드",
     "ratings": "평점",
     "out_of_10": "10점 만점 중",
     "produced_in": "제작 지역",
