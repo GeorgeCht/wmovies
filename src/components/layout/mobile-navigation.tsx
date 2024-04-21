@@ -103,10 +103,7 @@ const MobileNavigation = ({
                       'text-white text-3xl font-semibold tracking-tighter leading-none'
                     }
                   >
-                    <Link
-                      href={'/movies?search'}
-                      onClick={() => setShowMenu(false)}
-                    >
+                    <Link href={'/search'} onClick={() => setShowMenu(false)}>
                       {tNav('search')}
                     </Link>
                   </li>

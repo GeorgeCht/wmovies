@@ -33,6 +33,12 @@ export const fetchData = async <T extends unknown>(
   const joinString = query.includes('?') ? '&' : '?'
   const data = await ky(
     `https://api.themoviedb.org/3/${query}${joinString}api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY!}`,
+    {
+      retry: {
+        limit: 0,
+      },
+      timeout: 3000,
+    },
   ).json()
   return data as T
 }

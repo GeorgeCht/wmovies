@@ -44,8 +44,11 @@
     "results_found": "{count, plural, =0 {결과를 찾을 수 없습니다} =1 {1개의 결과가 있습니다} other {#개의 결과가 있습니다}}",
     "no_movies_found": "영화를 찾을 수 없습니다",
     "no_tv_series_found": "TV 시리즈를 찾을 수 없습니다",
-    "movie_results": "'{query}'에 대한 영화",
-    "tv_series_results": "'{query}'에 대한 TV 시리즈"
+    "movie_results": "{query}에 대한 영화",
+    "tv_series_results": "{query}에 대한 TV 시리즈",
+    "type_to_continue": "계속하려면 검색 창에 입력하세요",
+    "type_to_continue_2": "위의 검색 창에 입력하여 시작하세요",
+    "search_opt": "다른 것을 검색해 보세요"
   },
   "titles": {
     "trending": "현재 트렌드",

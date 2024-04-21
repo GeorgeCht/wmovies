@@ -44,8 +44,11 @@
     "results_found": "{count, plural, =0 {No se encontraron resultados} =1 {Un resultado encontrado} other {# resultados encontrados}}",
     "no_movies_found": "No se encontraron películas",
     "no_tv_series_found": "No se encontraron series de TV",
-    "movie_results": "Películas para '{query}'",
-    "tv_series_results": "Series de TV para '{query}'"
+    "movie_results": "Películas para {query}",
+    "tv_series_results": "Series de TV para {query}",
+    "type_to_continue": "Escriba en la barra de búsqueda para continuar",
+    "type_to_continue_2": "Empiece escribiendo en la barra de búsqueda en la parte superior",
+    "search_opt": "Intente buscar algo más"
   },
   "titles": {
     "trending": "Tendencias ahora",

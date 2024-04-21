@@ -1,6 +1,13 @@
 'use client'
 
-import React, { memo, useEffect, useRef, useState, useCallback } from 'react'
+import React, {
+  memo,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  ReactNode,
+} from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { fetchData, formatLocale } from '@/lib/utils'
 import { useInView } from 'framer-motion'
@@ -21,15 +28,19 @@ const TvCarousel = memo(
     mediaType = 'tv',
     id,
     query = '/recommendations',
+    renderWhenInView = true,
     onModal = false,
     queryFlag = false,
+    fallback = null,
     className,
   }: {
     mediaType?: MediaType
     id?: string
     query?: string
+    renderWhenInView?: boolean
     onModal?: boolean
     queryFlag?: boolean
+    fallback?: ReactNode
     className?: string
   }) => {
     const ref = useRef<HTMLDivElement>(null)
@@ -37,7 +48,11 @@ const TvCarousel = memo(
     const [api, setApi] = useState<CarouselApi>()
     const locale = useLocale()
     const joinString = query.includes('?') ? '&' : '?'
-    const { isPending: loading, data } = useQuery({
+    const {
+      isPending: loading,
+      error,
+      data,
+    } = useQuery({
       queryKey: [
         queryFlag
           ? `${query}${joinString}language=${formatLocale(locale)}`
@@ -52,7 +67,7 @@ const TvCarousel = memo(
       staleTime: 1000 * 60 * 60 * 24,
       refetchOnWindowFocus: false,
       refetchOnMount: false,
-      enabled: isInView,
+      enabled: renderWhenInView ? isInView : true,
     })
 
     useEffect(() => {
@@ -115,6 +130,8 @@ const TvCarousel = memo(
         </div>
       )
     }
+
+    if (error || (data && data?.total_results === 0)) return fallback
 
     return (
       <Carousel

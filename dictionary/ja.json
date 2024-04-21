@@ -44,8 +44,11 @@
     "results_found": "{count, plural, =0 {結果が見つかりませんでした} =1 {1件の結果が見つかりました} other {#件の結果が見つかりました}}",
     "no_movies_found": "映画が見つかりませんでした",
     "no_tv_series_found": "テレビシリーズが見つかりませんでした",
-    "movie_results": "'{query}'の映画",
-    "tv_series_results": "'{query}'のテレビシリーズ"
+    "movie_results": "{query}の映画",
+    "tv_series_results": "{query}のテレビシリーズ",
+    "type_to_continue": "続行するには検索バーに入力してください",
+    "type_to_continue_2": "上部の検索バーに入力して開始してください",
+    "search_opt": "他のものを検索してみてください"
   },
   "titles": {
     "trending": "トレンド中",

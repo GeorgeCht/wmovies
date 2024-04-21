@@ -30,6 +30,7 @@
     "react-dom": "^18",
     "react-show-more-text": "^1.7.1",
     "react-youtube": "^10.1.0",
+    "use-debounce": "^10.0.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

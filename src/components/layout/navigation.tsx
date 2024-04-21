@@ -24,6 +24,7 @@ import {
   List,
   LucideIcon,
   Monitor,
+  Search,
 } from 'lucide-react'
 import {
   animateVariants,
@@ -191,6 +192,14 @@ const Navigation = ({
               width={26}
               height={26}
               Icon={Flame}
+            />
+            <NavigationItem
+              href={'/search'}
+              active={pathname.includes('search')}
+              content={'search'}
+              width={24}
+              height={24}
+              Icon={Search}
             />
           </ul>
           <ul className={'flex flex-col items-center pb-6'}>

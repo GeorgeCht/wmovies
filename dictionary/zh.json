@@ -44,8 +44,11 @@
     "results_found": "{count, plural, =0 {未找到结果} =1 {找到一个结果} other {找到 # 个结果}}",
     "no_movies_found": "未找到电影",
     "no_tv_series_found": "未找到电视剧",
-    "movie_results": "关于'{query}'的电影",
-    "tv_series_results": "关于'{query}'的电视剧"
+    "movie_results": "关于{query}的电影",
+    "tv_series_results": "关于{query}的电视剧",
+    "type_to_continue": "在搜索栏中键入以继续",
+    "type_to_continue_2": "从顶部的搜索栏开始输入",
+    "search_opt": "尝试搜索其他内容"
   },
   "titles": {
     "trending": "当前热门",
