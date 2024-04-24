@@ -1,12 +1,12 @@
-import { redirect } from 'next/navigation'
-import { unstable_setRequestLocale } from 'next-intl/server'
+'use client'
 
-export default function Index({
-  params: { locale },
-}: {
-  params: { locale: string }
-}) {
-  unstable_setRequestLocale(locale)
-  redirect(`/${locale}/movies/`)
-  return null
+import React from 'react'
+import MoviesPage from '@/components/pages/movies'
+
+export default function Page() {
+  return (
+    <React.Fragment>
+      <MoviesPage />
+    </React.Fragment>
+  )
 }
